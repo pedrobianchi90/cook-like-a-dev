@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import myContext from './RecipeContext';
 
 function RecipesProvider({ children }) {
+  const store = {};
   return (
     <myContext.Provider value={ store }>
       {children}
