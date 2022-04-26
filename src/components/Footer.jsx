@@ -9,21 +9,24 @@ function Footer() {
     <div data-testid="footer">
       <Link
         to="/drinks"
-        data-testid="drinks-bottom-btn"
       >
-        { drinkIcon }
+        <button data-testid="drinks-bottom-btn" type="button">
+          <img src={ drinkIcon } alt="drink-icon" />
+        </button>
       </Link>
       <Link
         to="/explore"
-        data-testid="explore-bottom-btn"
       >
-        { exploreIcon }
+        <button data-testid="explore-bottom-btn" type="button">
+          <img src={ exploreIcon } alt="explore-icon" />
+        </button>
       </Link>
       <Link
         to="/foods"
-        data-testid="food-bottom-btn"
       >
-        { mealIcon }
+        <button data-testid="food-bottom-btn" type="button">
+          <img src={ mealIcon } alt="food-icon" />
+        </button>
       </Link>
     </div>
   );
