@@ -11,9 +11,9 @@ import Profile from './pages/Profile';
 // import DoneRecipe from './pages/DoneRecipe';
 // import FavoriteRecipe from './pages/FavoriteRecipe';
 // import Details from './pages/Details';
-// import ExploreRecipes from './pages/ExploreRecipes';
-// import ExploreIngredient from './pages/ExploreIngredient';
-// import Nationalites from './pages/Nationalites';
+import ExploreRecipes from './pages/ExploreRecipes';
+import ExploreIngredient from './pages/ExploreIngredient';
+import Nationalites from './pages/Nationalites';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
             component={ Progress } */}
           {/* /> */}
           <Route exact path="/explore" component={ Explore } />
-          {/* <Route exact path="/explore/foods" component={ ExploreRecipes } />
+          <Route exact path="/explore/foods" component={ ExploreRecipes } />
           <Route exact path="/explore/drinks" component={ ExploreRecipes } />
           <Route
             exact
@@ -45,7 +45,10 @@ function App() {
             component={ ExploreIngredient }
           />
           <Route
-          exact path="/explore/foods/nationalities" component={ Nationalites } /> */}
+            exact
+            path="/explore/foods/nationalities"
+            component={ Nationalites }
+          />
           <Route exact path="/profile" component={ Profile } />
           {/* <Route exact path="/done-recipes" component={ DoneRecipe } />
           <Route exact path="/favorite-recipes" component={ FavoriteRecipe } /> */}
