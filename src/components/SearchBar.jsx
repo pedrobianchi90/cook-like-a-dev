@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import myContext from '../context/RecipeContext';
+// import { filters } from '../helper/servicesAPI';
 
 export default function SearchBar() {
+  const { searchInputs, setSearchInputs, filterBtn, setFilterBtn } = useContext(myContext);
+
+  const handleClick = async () => {
+    if (searchInputs.lenght > 1 && filterBtn === 'inputLetter') {
+      global.alert('Your search must have only 1 (one) character');
+    }
+  }
+
   return (
     <section>
+
       <div>
+        <label htmlFor="searchInput">
+          Search Recipe:
+          <input
+          type="text"
+          id="searchInput"
+          placeholder="Search"
+          data-testid="search-input"
+          value={ searchInputs }
+          onChange= { ({ target }) => {
+            setSearchInputs(target.value);
+          } }
+          />
+        </label>
+
         <label htmlFor="ingredients">
           Ingredients
           <input
@@ -12,6 +37,7 @@ export default function SearchBar() {
           data-testid="ingredient-search-radio"
           name="filter"
           value="inputIngredients"
+          onChange={ () => { setFilterBtn('inputIngredients'); }}
           />
         </label>
 
@@ -23,6 +49,7 @@ export default function SearchBar() {
             id="name"
             value="inputName"
             testid="name-search-radio"
+            onChange={ () => { setFilterBtn('inputName'); }}
             />
           </label>
 
@@ -34,9 +61,20 @@ export default function SearchBar() {
           value="inputLetter"
           data-testid="exec-search-btn"
           id="letter"
+          onChange={ () => { setFilterBtn('inputLetter'); }}
           />
         </label>
       </div>
+      
+      <button
+      type="button"
+      data-testid="exec-search-btn"
+      onClick={ handleClick }
+      >
+        Search
+        </button>
+
+
     </section>
   )
 }
