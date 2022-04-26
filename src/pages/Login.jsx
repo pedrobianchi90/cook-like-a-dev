@@ -26,8 +26,8 @@ function Login() {
   };
 
   const buttonClick = () => {
-    localStorage.setItem('mealsToken', JSON.stringify([]));
-    localStorage.setItem('cocktailsToken', JSON.stringify([]));
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
     localStorage.setItem('user', JSON.stringify({ email: state.email }));
     history.push('/foods');
   };
