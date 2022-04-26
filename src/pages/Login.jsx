@@ -29,7 +29,7 @@ function Login() {
     localStorage.setItem('mealsToken', JSON.stringify([]));
     localStorage.setItem('cocktailsToken', JSON.stringify([]));
     localStorage.setItem('user', JSON.stringify({ email: state.email }));
-    history('/foods');
+    history.push('/foods');
   };
 
   return (
@@ -44,6 +44,7 @@ function Login() {
       <input
         data-testid="password-input"
         placeholder="Sua senha"
+        type="password"
         value={ state.password }
         onChange={ handleChange }
         name="password"
