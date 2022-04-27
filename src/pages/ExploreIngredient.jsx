@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 import profileIcon from '../images/profileIcon.svg';
 
 function ExploreIngredient() {
