@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import myContext from './RecipeContext';
 
 function RecipesProvider({ children }) {
-  const [searchInputs, setSearchInputs] = useState('');
-  const [filterBtn, setFilterBtn] = useState('inputName');
+  const [drinksData, setDrinksData] = useState('');
+  const [foodsData, setFoodsData] = useState('inputName');
 
   const store = {
-    searchInputs,
-    setSearchInputs,
-    filterBtn,
-    setFilterBtn,
+    drinksData,
+    setDrinksData,
+    foodsData,
+    setFoodsData,
   };
 
   return (
