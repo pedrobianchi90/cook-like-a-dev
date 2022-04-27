@@ -11,9 +11,6 @@ import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoriteRecipe from './pages/FavoriteRecipe';
-import Progress from './pages/Progress';
-import DoneRecipe from './pages/DoneRecipe';
-import FavoriteRecipe from './pages/FavoriteRecipe';
 import Details from './pages/Details';
 import ExploreRecipes from './pages/ExploreRecipes';
 import ExploreIngredient from './pages/ExploreIngredient';
@@ -21,14 +18,14 @@ import Nationalites from './pages/Nationalites';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
+    <Switch>
+      <BrowserRouter>
         <RecipesProvider>
           <Route exact path="/" component={ Login } />
           <Route exact path="/foods" component={ Foods } />
           <Route exact path="/drinks" component={ Drinks } />
 
-          {/* <Route exact path="/foods/{id-da-receita}" component={ Details } /> */}
+          <Route exact path="/foods/{id-da-receita}" component={ Details } />
 
           <Route exact path="/foods/details" component={ Details } />
 
@@ -64,8 +61,8 @@ function App() {
           <Route exact path="/favorite-recipes" component={ FavoriteRecipe } />
 
         </RecipesProvider>
-      </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Switch>
   );
 }
 

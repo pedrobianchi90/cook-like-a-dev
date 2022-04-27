@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import SearchBar from '../components/SearchBar';
 
 function Foods() {
   const [state, setState] = useState(false);
@@ -19,8 +20,8 @@ function Foods() {
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>
-      { state
-        && <input data-testid="search-input" type="text" placeholder="Search Recipe" />}
+      { state && <SearchBar />}
+      {/* && <input data-testid="search-input" type="text" placeholder="Search Recipe" /> */}
       <Footer />
     </div>
   );
