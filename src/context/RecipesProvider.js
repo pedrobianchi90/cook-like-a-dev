@@ -4,7 +4,7 @@ import myContext from './RecipeContext';
 
 function RecipesProvider({ children }) {
   const [drinksData, setDrinksData] = useState('');
-  const [foodsData, setFoodsData] = useState('inputName');
+  const [foodsData, setFoodsData] = useState([]);
 
   const store = {
     drinksData,

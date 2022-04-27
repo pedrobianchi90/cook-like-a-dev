@@ -1,25 +1,27 @@
 import React, { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import myContext from '../context/RecipeContext';
 import {
   fetchMealsIngredient,
   fetchMealsName,
   fetchMealsFirstLetter,
 } from '../helper/fetchMeal';
-// import {
-//   fetchDrinksIngredients,
-//   fetchDrinksName,
-//   fetchDrinksFirstLetter,
-// } from '../helper/fetchDinks';
+import {
+  fetchDrinksIngredients,
+  fetchDrinksName,
+  fetchDrinksFirstLetter,
+} from '../helper/fetchDinks';
 
 function SearchBar() {
   const {
-    // setDrinksData,
+    setDrinksData,
     setFoodsData,
   } = useContext(myContext);
 
   const [searchInputs, setSearchInputs] = useState('');
   const [filterBtn, setFilterBtn] = useState('');
   const MAX = 12;
+  const location = useLocation();
 
   const getFoods = async () => {
     let output = '';
@@ -37,23 +39,27 @@ function SearchBar() {
     }
   };
 
-  // const getDrinks = async () => {
-  //   let output = '';
-  //   if (searchInputs.length > 1 && filterBtn === 'inputLetter') {
-  //     global.alert('Your search must have only 1 (one) character');
-  //   } if (filterBtn === 'ingredients-search') {
-  //     output = await fetchDrinksIngredients(searchInputs);
-  //   } if (filterBtn === 'name-search') {
-  //     output = await fetchDrinksName(searchInputs);
-  //   } if (filterBtn === 'letter-search') {
-  //     output = await fetchDrinksFirstLetter(searchInputs);
-  //   } if (output !== null && filterBtn != '') {
-  //     return setDrinksData(output.slice(0, MAX));
-  //   }
-  // };
+  const getDrinks = async () => {
+    let output = '';
+    if (searchInputs.length > 1 && filterBtn === 'inputLetter') {
+      global.alert('Your search must have only 1 (one) character');
+    } if (filterBtn === 'inputIngredients') {
+      output = await fetchDrinksIngredients(searchInputs);
+    } if (filterBtn === 'inputName') {
+      output = await fetchDrinksName(searchInputs);
+    } if (filterBtn === 'inputLetter') {
+      output = await fetchDrinksFirstLetter(searchInputs);
+    } if (output !== null && filterBtn !== '') {
+      return setDrinksData(output.slice(0, MAX));
+    }
+  };
 
   const handleClick = () => {
-    getFoods();
+    if (location.pathname === '/foods') {
+      getFoods();
+    } if (location.pathname === '/drinks') {
+      getDrinks();
+    }
   };
 
   return (
