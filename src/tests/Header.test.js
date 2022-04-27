@@ -144,3 +144,5 @@ describe('1 - Testando o componente Header', () => {
     expect(inputSearchAfterSecondClick).not.toBeInTheDocument();
   });
 });
+
+// tests Header
