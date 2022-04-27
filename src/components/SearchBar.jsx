@@ -25,13 +25,14 @@ function SearchBar() {
     let output = '';
     if (searchInputs.length > 1 && filterBtn === 'inputLetter') {
       global.alert('Your search must have only 1 (one) character');
-    } if (filterBtn === 'ingredients-search') {
+    } if (filterBtn === 'inputIngredients') {
       output = await fetchMealsIngredient(searchInputs);
-    } if (filterBtn === 'name-search') {
+    } if (filterBtn === 'inputName') {
       output = await fetchMealsName(searchInputs);
-    } if (filterBtn === 'letter-search') {
+    } if (filterBtn === 'inputLetter') {
       output = await fetchMealsFirstLetter(searchInputs);
     } if (output !== null && filterBtn !== '') {
+      console.log(output);
       return setFoodsData(output.slice(0, MAX));
     }
   };
