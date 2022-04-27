@@ -4,8 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
-// import Foods from './pages/Foods';
-// import Drinks from './pages/Drinks';
+import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
 // import Explore from './pages/Explore';
 // import Profile from './pages/Profile';
 // import DoneRecipe from './pages/DoneRecipe';
@@ -21,9 +21,9 @@ function App() {
       <Switch>
         <RecipesProvider>
           <Route exact path="/" component={ Login } />
-          {/* <Route exact path="/foods" component={ Foods } />
-        <Route exact path="/drinks" component={ Drinks } />
-        <Route exact path="/foods/{id-da-receita}" component={ Details } />
+          <Route exact path="/foods" component={ Foods } />
+          <Route exact path="/drinks" component={ Drinks } />
+          {/* <Route exact path="/foods/{id-da-receita}" component={ Details } />
         <Route exact path="/drinks/{id-da-receita}" component={ Details } />
         <Route exact path="/foods/{id-da-receita}/in-progress" component={ Progress } />
         <Route exact path="/drinks/{id-da-receita}/in-progress" component={ Progress } />
