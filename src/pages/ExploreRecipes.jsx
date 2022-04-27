@@ -1,10 +1,10 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import { Link, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 
 function ExploreRecipes() {
   const location = useLocation();
-  console.log(location);
   return (
     <div>
       <header>
@@ -17,6 +17,7 @@ function ExploreRecipes() {
           {location.pathname === '/explore/drinks' ? 'Explore Drinks' : 'Explore Foods' }
         </h2>
       </header>
+      <Footer />
     </div>
   );
 }

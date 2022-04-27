@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
@@ -17,7 +18,9 @@ function Drinks() {
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>
+      <Footer />
     </div>
+
   );
 }
 

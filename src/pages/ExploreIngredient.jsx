@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 
@@ -13,6 +14,7 @@ function ExploreIngredient() {
         </Link>
         <h2 data-testid="page-title">Explore Ingredients</h2>
       </header>
+      <Footer />
     </div>
   );
 }

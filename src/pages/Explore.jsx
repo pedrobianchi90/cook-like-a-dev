@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 
@@ -23,6 +24,7 @@ function Explore() {
           <button type="button">Explore Drinks</button>
         </Link>
       </section>
+      <Footer />
     </div>
   );
 }
