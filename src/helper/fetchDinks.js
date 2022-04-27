@@ -18,9 +18,3 @@ export const fetchDrinksFirstLetter = async (firstLetter) => {
     .then((response) => response.json())
     .then((data) => data.drinks);
 };
-
-export const drinksFilters = {
-  inputDrinksIngredient: fetchDrinksIngredients,
-  inputDrinksName: fetchDrinksName,
-  inputDrinksLetter: fetchDrinksFirstLetter,
-};

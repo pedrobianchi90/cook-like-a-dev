@@ -1,21 +1,58 @@
 import React, { useContext, useState } from 'react';
 import myContext from '../context/RecipeContext';
-import { mealFilters } from '../helper/fetchMeal';
-import { drinksFilters } from '../helper/fetchDinks';
+import {
+  fetchMealsIngredient,
+  fetchMealsName,
+  fetchMealsFirstLetter,
+} from '../helper/fetchMeal';
+// import {
+//   fetchDrinksIngredients,
+//   fetchDrinksName,
+//   fetchDrinksFirstLetter,
+// } from '../helper/fetchDinks';
 
-export default function SearchBar() {
+function SearchBar() {
   const {
-    setDrinksData,
+    // setDrinksData,
     setFoodsData,
   } = useContext(myContext);
 
   const [searchInputs, setSearchInputs] = useState('');
-  const [searchBtn, setSearchBtn] = useState('');
+  const [filterBtn, setFilterBtn] = useState('');
+  const MAX = 12;
 
-  const handleClick = async () => {
-    if (searchInputs.lenght > 1 && filterBtn === 'inputLetter') {
+  const getFoods = async () => {
+    let output = '';
+    if (searchInputs.length > 1 && filterBtn === 'inputLetter') {
       global.alert('Your search must have only 1 (one) character');
+    } if (filterBtn === 'ingredients-search') {
+      output = await fetchMealsIngredient(searchInputs);
+    } if (filterBtn === 'name-search') {
+      output = await fetchMealsName(searchInputs);
+    } if (filterBtn === 'letter-search') {
+      output = await fetchMealsFirstLetter(searchInputs);
+    } if (output !== null && filterBtn !== '') {
+      return setFoodsData(output.slice(0, MAX));
     }
+  };
+
+  // const getDrinks = async () => {
+  //   let output = '';
+  //   if (searchInputs.length > 1 && filterBtn === 'inputLetter') {
+  //     global.alert('Your search must have only 1 (one) character');
+  //   } if (filterBtn === 'ingredients-search') {
+  //     output = await fetchDrinksIngredients(searchInputs);
+  //   } if (filterBtn === 'name-search') {
+  //     output = await fetchDrinksName(searchInputs);
+  //   } if (filterBtn === 'letter-search') {
+  //     output = await fetchDrinksFirstLetter(searchInputs);
+  //   } if (output !== null && filterBtn != '') {
+  //     return setDrinksData(output.slice(0, MAX));
+  //   }
+  // };
+
+  const handleClick = () => {
+    getFoods();
   };
 
   return (
@@ -40,7 +77,7 @@ export default function SearchBar() {
           Ingredients
           <input
             type="radio"
-            id="ingredients"
+            id="ingredients-search"
             data-testid="ingredient-search-radio"
             name="filter"
             value="inputIngredients"
@@ -53,9 +90,9 @@ export default function SearchBar() {
           <input
             type="radio"
             name="filter"
-            id="name"
+            id="name-search"
             value="inputName"
-            testid="name-search-radio"
+            data-testid="name-search-radio"
             onChange={ () => { setFilterBtn('inputName'); } }
           />
         </label>
@@ -66,8 +103,8 @@ export default function SearchBar() {
             type="radio"
             name="filter"
             value="inputLetter"
-            data-testid="exec-search-btn"
-            id="letter"
+            data-testid="first-letter-search-radio"
+            id="letter-search"
             onChange={ () => { setFilterBtn('inputLetter'); } }
           />
         </label>
@@ -84,3 +121,5 @@ export default function SearchBar() {
     </section>
   );
 }
+
+export default SearchBar;

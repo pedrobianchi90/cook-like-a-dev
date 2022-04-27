@@ -18,9 +18,3 @@ export const fetchMealsFirstLetter = async (firstLetter) => {
     .then((response) => response.json())
     .then((data) => data.meals);
 };
-
-export const mealFilters = {
-  inputMealsIngredient: fetchMealsIngredient,
-  inputMealsName: fetchMealsName,
-  inputMealsLetter: fetchMealsFirstLetter,
-};
