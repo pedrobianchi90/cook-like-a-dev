@@ -4,9 +4,11 @@ import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
+// import myContext from '../context/RecipeContext';
 
 function Foods() {
   const [state, setState] = useState(false);
+  // const { foodsData } = useContext(myContext);
   return (
     <div>
       <header>
@@ -20,6 +22,7 @@ function Foods() {
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>
+      <div />
       { state && <SearchBar />}
       {/* && <input data-testid="search-input" type="text" placeholder="Search Recipe" /> */}
       <Footer />

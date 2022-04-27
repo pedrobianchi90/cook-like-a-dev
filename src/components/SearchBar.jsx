@@ -1,25 +1,27 @@
 import React, { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import myContext from '../context/RecipeContext';
 import {
   fetchMealsIngredient,
   fetchMealsName,
   fetchMealsFirstLetter,
 } from '../helper/fetchMeal';
-// import {
-//   fetchDrinksIngredients,
-//   fetchDrinksName,
-//   fetchDrinksFirstLetter,
-// } from '../helper/fetchDinks';
+import {
+  fetchDrinksIngredients,
+  fetchDrinksName,
+  fetchDrinksFirstLetter,
+} from '../helper/fetchDinks';
 
 function SearchBar() {
   const {
-    // setDrinksData,
+    setDrinksData,
     setFoodsData,
   } = useContext(myContext);
 
   const [searchInputs, setSearchInputs] = useState('');
   const [filterBtn, setFilterBtn] = useState('');
   const MAX = 12;
+  const location = useLocation();
 
   const getFoods = async () => {
     let output = '';
@@ -53,7 +55,11 @@ function SearchBar() {
   };
 
   const handleClick = () => {
-    getFoods();
+    if (location.pathname === '/foods') {
+      getFoods();
+    } if (location.pathname === '/drinks') {
+      getDrinks();
+    }
   };
 
   return (
