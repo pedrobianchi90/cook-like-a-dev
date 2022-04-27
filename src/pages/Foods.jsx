@@ -1,7 +1,6 @@
-import React from 'react';
-import Footer from '../components/Footer';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 
@@ -22,7 +21,7 @@ function Foods() {
       </header>
       { state
         && <input data-testid="search-input" type="text" placeholder="Search Recipe" />}
-      <Footer />  
+      <Footer />
     </div>
   );
 }
