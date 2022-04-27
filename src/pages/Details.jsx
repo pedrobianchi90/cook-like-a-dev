@@ -1,7 +1,11 @@
 import React from 'react';
 
 function Details() {
-  return <p>Página de Detalhes</p>;
+  return (
+    <div>
+      <h2>Details Page</h2>
+    </div>
+  );
 }
 
 export default Details;
