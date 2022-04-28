@@ -1,33 +1,22 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
-import RecipeContext from '../context/RecipeContext';
+import DrinksCategories from '../components/DrinksCategories';
+import ListDrinks from '../components/ListDrinks';
+import myContext from '../context/RecipeContext';
 
 function Drinks() {
   const [state, setState] = useState(false);
-  const [filter, setfilter] = useState(false);
-
-  const {
-    drinks,
-    drinksCategories,
-    filterDrinkCategory,
-    getFilterDrinkCategory,
-  } = useContext(RecipeContext);
-
-  const handleClick = async ({ target }) => {
-    // if (filter) {
-    //   setfilter(false);
-    // } else {
-    setfilter(true);
-    // }
-    await getFilterDrinkCategory(target.name);
-  };
+  const { drinksData } = useContext(myContext);
 
   return (
     <div>
+
+      { drinksData.length === 1
+          && <Redirect to={ `/drinks/${drinksData[0].idDrink}` } /> }
       <header>
         <Link to="/profile">
           <button type="button">
@@ -40,49 +29,11 @@ function Drinks() {
         </button>
       </header>
       { state && <SearchBar />}
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ () => setfilter(false) }
-        >
-          All
-        </button>
-        { drinksCategories
-          ? drinksCategories.map((category) => (
-            <button
-              key={ category.strCategory }
-              type="button"
-              name={ category.strCategory }
-              data-testid={ `${category.strCategory}-category-filter` }
-              onClick={ handleClick }
-            >
-              {category.strCategory}
-            </button>
-          ))
-          : <p>Loading...</p>}
-      </div>
-      <div>
-        { filterDrinkCategory || drinks
-          ? (filter ? filterDrinkCategory : drinks)
-            .map((drink, index) => (
-              <div
-                key={ drink.idDrink }
-                data-testid={ `${index}-recipe-card` }
-              >
-                <img
-                  src={ drink.strDrinkThumb }
-                  alt={ drink.strDrink }
-                  data-testid={ `${index}-card-img` }
-                />
-                <div>
-                  <span data-testid={ `${index}-card-name` }>{ drink.strDrink }</span>
-                </div>
-              </div>
-            ))
-          : <p>Loading...</p>}
 
-      </div>
+      <DrinksCategories />
+
+      <ListDrinks />
+
       <Footer />
     </div>
   );

@@ -36,7 +36,7 @@ function SearchBar() {
     } if (output !== null && filterBtn !== '') {
       console.log(output);
       return setFoodsData(output.slice(0, MAX));
-    }
+    } global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
   const getDrinks = async () => {
@@ -51,7 +51,7 @@ function SearchBar() {
       output = await fetchDrinksFirstLetter(searchInputs);
     } if (output !== null && filterBtn !== '') {
       return setDrinksData(output.slice(0, MAX));
-    }
+    } global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
   const handleClick = () => {

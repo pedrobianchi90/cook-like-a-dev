@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
@@ -29,9 +28,9 @@ function App() {
 
           <Route exact path="/foods/details" component={ Details } />
 
-          <Route exact path="/drinks/:id" component={ Details } />
-          {/* <Route exact path="/foods/:id/in-progress" component={ Progress } />
-          <Route
+          <Route exact path="/drinks/{id-da-receita}" component={ Details } />
+          {/* <Route exact path="/foods/{id-da-receita}/in-progress" component={ Progress } /> */}
+          {/* <Route
             exact
             path="/drinks/:id/in-progress"
             component={ Progress }
