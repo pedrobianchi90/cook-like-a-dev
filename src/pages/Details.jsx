@@ -1,37 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-// import shareIcon from '../images/shareIcon.svg';
-// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import '../Footer.css';
 import { foodById, drinkById } from '../services/fetchRecipeById';
 
 function Details() {
   const location = useLocation();
-  // const myId = location.pathname.split('/')[2];
-  const myId = '52941'; // food
+  const myId = location.pathname.split('/')[2];
+  // const myId = '52941'; // food
   // const myId = '12798'; // drink
   const typeRecipe = location.pathname.split('/')[1];
-  console.log(location.pathname.split('/')[2]);
+  // console.log(location.pathname.split('/')[2]);
 
-  const [state, setState] = useState('xablau');
+  const [state, setState] = useState('Xablau');
   console.log(state);
 
   const getRecipe = async (recipe) => {
     let myRecipe;
     if (recipe === 'foods') myRecipe = await foodById(myId);
-    else myRecipe = await drinkById(myId);
+    if (recipe === 'drinks') myRecipe = await drinkById(myId);
     setState(myRecipe);
   };
 
   useEffect(() => {
     getRecipe(typeRecipe);
-  }, [typeRecipe]);
+  }, []);
 
   return (
     <div>
       <img
         src={ state[0].strDrinkThumb ? state[0].strDrinkThumb
           : state[0].strMealThumb }
-        alt="test"
+        alt={ state.strDrink ? state[0].strDrink
+          : state[0].strMeal }
         data-testid="recipe-photo"
       />
       <h2 data-testid="recipe-title">
@@ -39,13 +41,18 @@ function Details() {
           : state[0].strMeal}
 
       </h2>
-      {/* <button type="button" data-testid="share-btn">{ shareIcon }</button>
-      <button type="button" data-testid="favorite-btn">{ whiteHeartIcon }</button> */}
+      { state[0].strDrinkThumb ? <span>{state[0].strAlcoholic}</span> : ''}
+      <button type="button" data-testid="share-btn">{ shareIcon }</button>
+      <button type="button" data-testid="favorite-btn">{ whiteHeartIcon }</button>
       <p data-testid="recipe-category">{state[0].strCategory}</p>
-      <ul data-testid="0-ingredient-name-and-measure">
+      <ul>
         Ingredientes:
-        <li>{`${state[0].strIngredient1} - ${state[0].strMeasure1}`}</li>
-        <li>{`${state[0].strIngredient2} - ${state[0].strMeasure2}`}</li>
+        <li data-testid="0-ingredient-name-and-measure">
+          {`${state[0].strIngredient1} - ${state[0].strMeasure1}`}
+        </li>
+        <li data-testid="1-ingredient-name-and-measure">
+          {`${state[0].strIngredient2} - ${state[0].strMeasure2}`}
+        </li>
         <li>{`${state[0].strIngredient3} - ${state[0].strMeasure3}`}</li>
         <li>{`${state[0].strIngredient4} - ${state[0].strMeasure4}`}</li>
         <li>{`${state[0].strIngredient5} - ${state[0].strMeasure5}`}</li>
@@ -73,7 +80,15 @@ function Details() {
         Recomended
         <li data-testid="0-recomendation-card"> cards de recomendção...</li>
       </ul>
-      <button data-testid="start-recipe-btn" type="button">StarRecipe</button>
+      { state[0].strMealThumb ? <p data-testid="video">Xablau</p> : ''}
+      <button
+        data-testid="start-recipe-btn"
+        type="button"
+        c
+        lassName="footer"
+      >
+        StarRecipe
+      </button>
     </div>
   );
 }
