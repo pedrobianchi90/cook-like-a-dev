@@ -13,7 +13,8 @@ import {
 } from '../services/fetchDrinksCategories';
 
 function RecipesProvider({ children }) {
-  const store = {};
+  const [drinksData, setDrinksData] = useState('');
+  const [foodsData, setFoodsData] = useState([]);
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [mealCategories, setMealCategories] = useState();
@@ -51,23 +52,28 @@ function RecipesProvider({ children }) {
     setFilterDrinkCategory([...drinkFilterResponse]);
   }
 
+  const store = {
+    drinksData,
+    setDrinksData,
+    foodsData,
+    setFoodsData,
+    meals,
+    getMeals,
+    drinks,
+    getDrinks,
+    mealCategories,
+    getMealCategories,
+    filterMealCategory,
+    getFilterMealCategory,
+    drinksCategories,
+    getDrinksCategories,
+    filterDrinkCategory,
+    getFilterDrinkCategory,
+  };
+
   return (
     <myContext.Provider
-      value={ {
-        store,
-        meals,
-        getMeals,
-        drinks,
-        getDrinks,
-        mealCategories,
-        getMealCategories,
-        filterMealCategory,
-        getFilterMealCategory,
-        drinksCategories,
-        getDrinksCategories,
-        filterDrinkCategory,
-        getFilterDrinkCategory,
-      } }
+      value={ store }
     >
       {children}
     </myContext.Provider>
