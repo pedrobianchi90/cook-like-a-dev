@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import myContext from './RecipeContext';
 import fetchMealApi from '../services/fetchMealApi';
@@ -52,21 +52,24 @@ function RecipesProvider({ children }) {
     setFilterDrinkCategory([...drinkFilterResponse]);
   }
 
+  useEffect(() => {
+    getDrinks();
+    getDrinksCategories();
+    getMeals();
+    getMealCategories();
+  }, []);
+
   const store = {
     drinksData,
     setDrinksData,
     foodsData,
     setFoodsData,
     meals,
-    getMeals,
     drinks,
-    getDrinks,
     mealCategories,
-    getMealCategories,
     filterMealCategory,
     getFilterMealCategory,
     drinksCategories,
-    getDrinksCategories,
     filterDrinkCategory,
     getFilterDrinkCategory,
   };
