@@ -12,6 +12,11 @@ import {
   fetchFilterDrinksCategory,
 } from '../services/fetchDrinksCategories';
 
+import {
+  fetchDrinkRandom,
+  fetchMealRandom,
+} from '../services/fetchRandomApi';
+
 function RecipesProvider({ children }) {
   const [filter, setFilter] = useState({ bool: false, name: 'All' });
   const [drinksData, setDrinksData] = useState('');
@@ -22,6 +27,8 @@ function RecipesProvider({ children }) {
   const [filterMealCategory, setFilterMealCategory] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState();
   const [filterDrinkCategory, setFilterDrinkCategory] = useState([]);
+  const [mealRandom, setMealRandom] = useState([]);
+  const [drinkRandom, setDrinkRandom] = useState([]);
 
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
@@ -57,11 +64,23 @@ function RecipesProvider({ children }) {
     setFilter({ bool, name });
   }
 
+  async function getRandomFood() {
+    const foodResponse = await fetchMealRandom();
+    setMealRandom([...foodResponse]);
+  }
+
+  async function getRandomDrink() {
+    const drinkResponse = await fetchDrinkRandom();
+    setDrinkRandom([...drinkResponse]);
+  }
+
   useEffect(() => {
     getDrinks();
     getDrinksCategories();
     getMeals();
     getMealCategories();
+    getRandomFood();
+    getRandomDrink();
   }, []);
 
   const store = {
@@ -70,9 +89,7 @@ function RecipesProvider({ children }) {
     foodsData,
     setFoodsData,
     meals,
-    getMeals,
     drinks,
-    getDrinks,
     mealCategories,
     getMealCategories,
     filter,
@@ -80,9 +97,10 @@ function RecipesProvider({ children }) {
     filterMealCategory,
     getFilterMealCategory,
     drinksCategories,
-    getDrinksCategories,
     filterDrinkCategory,
     getFilterDrinkCategory,
+    mealRandom,
+    drinkRandom,
   };
 
   return (

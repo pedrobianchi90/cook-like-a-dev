@@ -20,7 +20,6 @@ function Profile() {
   };
 
   const getEmail = JSON.parse(localStorage.getItem('user'));
-  console.log(getEmail.email);
 
   return (
     <div>
@@ -36,7 +35,7 @@ function Profile() {
           data-testid="profile-email"
           id="profile-email"
         >
-          { getEmail.email }
+          { getEmail ? getEmail.email : '' }
         </p>
 
         <button

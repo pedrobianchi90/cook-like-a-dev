@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
@@ -18,14 +17,14 @@ import Nationalites from './pages/Nationalites';
 
 function App() {
   return (
-    <Switch>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Switch>
         <RecipesProvider>
           <Route exact path="/" component={ Login } />
           <Route exact path="/foods" component={ Foods } />
           <Route exact path="/drinks" component={ Drinks } />
 
-          <Route exact path="/foods/{id-da-receita}" component={ Details } />
+          <Route exact path="/foods/:id" component={ Details } />
 
           <Route exact path="/foods/details" component={ Details } />
 
@@ -33,7 +32,7 @@ function App() {
           {/* <Route exact path="/foods/{id-da-receita}/in-progress" component={ Progress } /> */}
           {/* <Route
             exact
-            path="/drinks/{id-da-receita}/in-progress"
+            path="/drinks/:id/in-progress"
             component={ Progress }
           /> */}
 
@@ -61,8 +60,8 @@ function App() {
           <Route exact path="/favorite-recipes" component={ FavoriteRecipe } />
 
         </RecipesProvider>
-      </BrowserRouter>
-    </Switch>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
