@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import myContext from './RecipeContext';
 import fetchMealApi from '../services/fetchMealApi';
@@ -12,6 +12,11 @@ import {
   fetchFilterDrinksCategory,
 } from '../services/fetchDrinksCategories';
 
+import {
+  fetchDrinkRandom,
+  fetchMealRandom,
+} from '../services/fetchRandomApi';
+
 function RecipesProvider({ children }) {
   const [drinksData, setDrinksData] = useState('');
   const [foodsData, setFoodsData] = useState([]);
@@ -21,6 +26,8 @@ function RecipesProvider({ children }) {
   const [filterMealCategory, setFilterMealCategory] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState();
   const [filterDrinkCategory, setFilterDrinkCategory] = useState([]);
+  const [mealRandom, setMealRandom] = useState([]);
+  const [drinkRandom, setDrinkRandom] = useState([]);
 
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
@@ -52,6 +59,21 @@ function RecipesProvider({ children }) {
     setFilterDrinkCategory([...drinkFilterResponse]);
   }
 
+  async function getRandomFood() {
+    const foodResponse = await fetchMealRandom();
+    setMealRandom([...foodResponse]);
+  }
+
+  async function getRandomDrink() {
+    const drinkResponse = await fetchDrinkRandom();
+    setDrinkRandom([...drinkResponse]);
+  }
+
+  useEffect(() => {
+    getRandomFood();
+    getRandomDrink();
+  }, []);
+
   const store = {
     drinksData,
     setDrinksData,
@@ -69,6 +91,8 @@ function RecipesProvider({ children }) {
     getDrinksCategories,
     filterDrinkCategory,
     getFilterDrinkCategory,
+    mealRandom,
+    drinkRandom,
   };
 
   return (

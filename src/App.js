@@ -8,7 +8,7 @@ import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import Explore from './pages/Explore';
 import Profile from './pages/Profile';
-import Progress from './pages/Progress';
+/* import Progress from './pages/Progress'; */
 import DoneRecipe from './pages/DoneRecipe';
 import FavoriteRecipe from './pages/FavoriteRecipe';
 import Details from './pages/Details';
@@ -25,17 +25,17 @@ function App() {
           <Route exact path="/foods" component={ Foods } />
           <Route exact path="/drinks" component={ Drinks } />
 
-          <Route exact path="/foods/{id-da-receita}" component={ Details } />
+          <Route exact path="/foods/:id-da-receita" component={ Details } />
 
           <Route exact path="/foods/details" component={ Details } />
 
-          <Route exact path="/drinks/{id-da-receita}" component={ Details } />
-          <Route exact path="/foods/{id-da-receita}/in-progress" component={ Progress } />
+          <Route exact path="/drinks/:id-da-receita" component={ Details } />
+          {/*           <Route exact path="/foods/{id-da-receita}/in-progress" component={ Progress } />
           <Route
             exact
             path="/drinks/{id-da-receita}/in-progress"
             component={ Progress }
-          />
+          /> */}
 
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/foods" component={ ExploreRecipes } />
