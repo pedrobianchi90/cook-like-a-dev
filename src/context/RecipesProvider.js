@@ -17,7 +17,13 @@ import {
   fetchMealRandom,
 } from '../services/fetchRandomApi';
 
+import {
+  fetchFoodIngredients,
+  fetchDrinksIngredients,
+} from '../services/fetchIngredientsApi';
+
 function RecipesProvider({ children }) {
+  const [filter, setFilter] = useState({ bool: false, name: 'All' });
   const [drinksData, setDrinksData] = useState('');
   const [foodsData, setFoodsData] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -28,6 +34,8 @@ function RecipesProvider({ children }) {
   const [filterDrinkCategory, setFilterDrinkCategory] = useState([]);
   const [mealRandom, setMealRandom] = useState([]);
   const [drinkRandom, setDrinkRandom] = useState([]);
+  const [mealIngredients, setMealIngredients] = useState([]);
+  const [drinksIngredients, setDrinkIngredients] = useState([]);
 
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
@@ -59,6 +67,10 @@ function RecipesProvider({ children }) {
     setFilterDrinkCategory([...drinkFilterResponse]);
   }
 
+  function getFilter({ bool, name }) {
+    setFilter({ bool, name });
+  }
+
   async function getRandomFood() {
     const foodResponse = await fetchMealRandom();
     setMealRandom([...foodResponse]);
@@ -69,6 +81,16 @@ function RecipesProvider({ children }) {
     setDrinkRandom([...drinkResponse]);
   }
 
+  async function getFoodIngredient() {
+    const foodIngredientsResponse = await fetchFoodIngredients();
+    setMealIngredients([...foodIngredientsResponse]);
+  }
+
+  async function getDrinkIngredient() {
+    const drinkIngredientsResponse = await fetchDrinksIngredients();
+    setDrinkIngredients([...drinkIngredientsResponse]);
+  }
+
   useEffect(() => {
     getDrinks();
     getDrinksCategories();
@@ -76,6 +98,8 @@ function RecipesProvider({ children }) {
     getMealCategories();
     getRandomFood();
     getRandomDrink();
+    getFoodIngredient();
+    getDrinkIngredient();
   }, []);
 
   const store = {
@@ -86,6 +110,9 @@ function RecipesProvider({ children }) {
     meals,
     drinks,
     mealCategories,
+    getMealCategories,
+    filter,
+    getFilter,
     filterMealCategory,
     getFilterMealCategory,
     drinksCategories,
@@ -93,6 +120,8 @@ function RecipesProvider({ children }) {
     getFilterDrinkCategory,
     mealRandom,
     drinkRandom,
+    mealIngredients,
+    drinksIngredients,
   };
 
   return (
