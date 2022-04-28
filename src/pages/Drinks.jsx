@@ -6,6 +6,8 @@ import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
 import RecipeContext from '../context/RecipeContext';
 
+const LOADING = 'Carregando...';
+
 function Drinks() {
   const [state, setState] = useState(false);
   const [filter, setfilter] = useState(false);
