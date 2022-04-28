@@ -26,7 +26,7 @@ function Foods() {
   useEffect(() => {
     getMeals();
     getMealCategories();
-  }, []);
+  });
 
   const handleClick = async ({ target }) => {
     // if (filter) {
