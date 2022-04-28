@@ -70,6 +70,10 @@ function RecipesProvider({ children }) {
   }
 
   useEffect(() => {
+    getDrinks();
+    getDrinksCategories();
+    getMeals();
+    getMealCategories();
     getRandomFood();
     getRandomDrink();
   }, []);
@@ -80,15 +84,11 @@ function RecipesProvider({ children }) {
     foodsData,
     setFoodsData,
     meals,
-    getMeals,
     drinks,
-    getDrinks,
     mealCategories,
-    getMealCategories,
     filterMealCategory,
     getFilterMealCategory,
     drinksCategories,
-    getDrinksCategories,
     filterDrinkCategory,
     getFilterDrinkCategory,
     mealRandom,
