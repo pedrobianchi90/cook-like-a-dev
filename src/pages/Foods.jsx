@@ -1,25 +1,28 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
-import RecipeContext from '../context/RecipeContext';
-// import myContext from '../context/RecipeContext';
+// import RecipeContext from '../context/RecipeContext';
+import myContext from '../context/RecipeContext';
 
 function Foods() {
   const [state, setState] = useState(false);
-  // const { foodsData } = useContext(myContext);
-  const LOADING = 'Carregando...';
-
-  const [filter, setfilter] = useState(false);
-
   const {
     meals,
     mealCategories,
     filterMealCategory,
     getFilterMealCategory,
-  } = useContext(RecipeContext);
+    foodsData,
+  } = useContext(myContext);
+  const LOADING = 'Carregando...';
+
+  const [filter, setfilter] = useState(false);
+
+  if (foodsData.length === 1) {
+    return <Redirect to={ `/foods/${foodsData[0].idMeal}` } />;
+  }
 
   const handleClick = async ({ target }) => {
     // if (filter) {
@@ -46,7 +49,6 @@ function Foods() {
       </header>
       <div />
       { state && <SearchBar />}
-      {/* && <input data-testid="search-input" type="text" placeholder="Search Recipe" /> */}
       <div>
         <button
           type="button"
@@ -89,6 +91,15 @@ function Foods() {
             ))
           : LOADING }
       </div>
+      {/* { foodsData.map((recipe, index) => (
+                <div
+                key={ recipe.idMeal }
+                data-testid="${index}-recipe-card"
+                >
+                  <Link to { `/foods/${recipe.idMeal}` } />
+                </div>
+              )) }
+      <div /> */}
       <Footer />
     </div>
   );
