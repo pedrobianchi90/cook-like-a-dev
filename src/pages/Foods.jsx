@@ -4,35 +4,17 @@ import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
-// import RecipeContext from '../context/RecipeContext';
 import myContext from '../context/RecipeContext';
+import FoodsCategories from '../components/FoodsCategories';
+import ListFoods from '../components/ListFoods';
 
 function Foods() {
   const [state, setState] = useState(false);
-  const {
-    meals,
-    mealCategories,
-    filterMealCategory,
-    getFilterMealCategory,
-    foodsData,
-  } = useContext(myContext);
-  const LOADING = 'Carregando...';
-
-  const [filter, setfilter] = useState(false);
+  const { foodsData } = useContext(myContext);
 
   if (foodsData.length === 1) {
     return <Redirect to={ `/foods/${foodsData[0].idMeal}` } />;
   }
-
-  const handleClick = async ({ target }) => {
-    // if (filter) {
-    //   setfilter(false);
-    // } else {
-    //   setfilter(true);
-    // }
-    setfilter(true);
-    await getFilterMealCategory(target.name);
-  };
 
   return (
     <div>
@@ -49,57 +31,11 @@ function Foods() {
       </header>
       <div />
       { state && <SearchBar />}
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ () => setfilter(false) }
-        >
-          All
-        </button>
-        { mealCategories
-          ? mealCategories.map((category) => (
-            <button
-              key={ category.strCategory }
-              name={ category.strCategory }
-              type="button"
-              data-testid={ `${category.strCategory}-category-filter` }
-              onClick={ handleClick }
-            >
-              {category.strCategory}
-            </button>
-          ))
-          : LOADING}
-      </div>
-      <div>
-        { filterMealCategory || meals
-          ? (filter ? filterMealCategory : meals)
-            .map((meal, index) => (
-              <div
-                key={ meal.idMeal }
-                data-testid={ `${index}-recipe-card` }
-              >
-                <img
-                  src={ meal.strMealThumb }
-                  alt={ meal.strMeal }
-                  data-testid={ `${index}-card-img` }
-                />
-                <div>
-                  <span data-testid={ `${index}-card-name` }>{ meal.strMeal }</span>
-                </div>
-              </div>
-            ))
-          : LOADING }
-      </div>
-      {/* { foodsData.map((recipe, index) => (
-                <div
-                key={ recipe.idMeal }
-                data-testid="${index}-recipe-card"
-                >
-                  <Link to { `/foods/${recipe.idMeal}` } />
-                </div>
-              )) }
-      <div /> */}
+
+      <FoodsCategories />
+
+      <ListFoods />
+
       <Footer />
     </div>
   );
