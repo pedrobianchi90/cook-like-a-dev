@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import myContext from './RecipeContext';
 import fetchMealApi from '../services/fetchMealApi';
@@ -13,6 +13,7 @@ import {
 } from '../services/fetchDrinksCategories';
 
 function RecipesProvider({ children }) {
+  const [filter, setFilter] = useState({ bool: false, name: 'All' });
   const [drinksData, setDrinksData] = useState('');
   const [foodsData, setFoodsData] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -52,6 +53,17 @@ function RecipesProvider({ children }) {
     setFilterDrinkCategory([...drinkFilterResponse]);
   }
 
+  function getFilter({ bool, name }) {
+    setFilter({ bool, name });
+  }
+
+  useEffect(() => {
+    getDrinks();
+    getDrinksCategories();
+    getMeals();
+    getMealCategories();
+  }, []);
+
   const store = {
     drinksData,
     setDrinksData,
@@ -63,6 +75,8 @@ function RecipesProvider({ children }) {
     getDrinks,
     mealCategories,
     getMealCategories,
+    filter,
+    getFilter,
     filterMealCategory,
     getFilterMealCategory,
     drinksCategories,
