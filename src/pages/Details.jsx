@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../Footer.css';
@@ -81,14 +81,19 @@ function Details() {
         <li data-testid="0-recomendation-card"> cards de recomendção...</li>
       </ul>
       { state[0].strMealThumb ? <p data-testid="video">Xablau</p> : ''}
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        c
-        lassName="footer"
+      <Link
+        to={ state[0].strMealThumb ? `/foods/${myId}/in-progress`
+          : `/drinks/${myId}/in-progress` }
       >
-        StarRecipe
-      </button>
+        <button
+          data-testid="start-recipe-btn"
+          type="button"
+          c
+          lassName="footer"
+        >
+          StarRecipe
+        </button>
+      </Link>
     </div>
   );
 }
