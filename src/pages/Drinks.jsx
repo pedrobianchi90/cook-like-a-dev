@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
@@ -12,17 +12,10 @@ function Drinks() {
 
   const {
     drinks,
-    getDrinks,
     drinksCategories,
-    getDrinksCategories,
     filterDrinkCategory,
     getFilterDrinkCategory,
   } = useContext(RecipeContext);
-
-  useEffect(() => {
-    getDrinks();
-    getDrinksCategories();
-  });
 
   const handleClick = async ({ target }) => {
     // if (filter) {
@@ -67,7 +60,7 @@ function Drinks() {
               {category.strCategory}
             </button>
           ))
-          : LOADING}
+          : <p>Loading...</p>}
       </div>
       <div>
         { filterDrinkCategory || drinks
@@ -87,7 +80,7 @@ function Drinks() {
                 </div>
               </div>
             ))
-          : LOADING}
+          : <p>Loading...</p>}
 
       </div>
       <Footer />

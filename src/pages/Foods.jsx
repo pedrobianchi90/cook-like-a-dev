@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
@@ -16,17 +16,10 @@ function Foods() {
 
   const {
     meals,
-    getMeals,
     mealCategories,
-    getMealCategories,
     filterMealCategory,
     getFilterMealCategory,
   } = useContext(RecipeContext);
-
-  useEffect(() => {
-    getMeals();
-    getMealCategories();
-  });
 
   const handleClick = async ({ target }) => {
     // if (filter) {
