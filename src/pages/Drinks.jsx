@@ -22,7 +22,7 @@ function Drinks() {
   useEffect(() => {
     getDrinks();
     getDrinksCategories();
-  }, []);
+  });
 
   const handleClick = async ({ target }) => {
     // if (filter) {
