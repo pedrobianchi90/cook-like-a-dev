@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
 import DrinksCategories from '../components/DrinksCategories';
 import ListDrinks from '../components/ListDrinks';
+import myContext from '../context/RecipeContext';
 
 function Drinks() {
   const [state, setState] = useState(false);
+  const { drinksData } = useContext(myContext);
 
   return (
     <div>
+
+      { drinksData.length === 1
+          && <Redirect to={ `/drinks/${drinksData[0].idDrink}` } /> }
       <header>
         <Link to="/profile">
           <button type="button">

@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import Footer from '../components/Footer';
 import searchIcon from '../images/searchIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import SearchBar from '../components/SearchBar';
-// import myContext from '../context/RecipeContext';
+import myContext from '../context/RecipeContext';
 import FoodsCategories from '../components/FoodsCategories';
 import ListFoods from '../components/ListFoods';
 
 function Foods() {
   const [state, setState] = useState(false);
-  // const { foodsData } = useContext(myContext);
+  const { foodsData } = useContext(myContext);
+
+  if (foodsData.length === 1) {
+    return <Redirect to={ `/foods/${foodsData[0].idMeal}` } />;
+  }
 
   return (
     <div>
@@ -27,7 +31,6 @@ function Foods() {
       </header>
       <div />
       { state && <SearchBar />}
-      {/* && <input data-testid="search-input" type="text" placeholder="Search Recipe" /> */}
 
       <FoodsCategories />
 
