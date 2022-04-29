@@ -1,17 +1,30 @@
-import React, { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import profileIcon from '../images/profileIcon.svg';
 import RecipeContext from '../context/RecipeContext';
 
 function ExploreIngredient() {
   const location = useLocation();
+  const history = useHistory();
   const {
     mealIngredients,
     drinksIngredients,
+    setSearchInputs,
   } = useContext(RecipeContext);
-  console.log(mealIngredients);
-  console.log(drinksIngredients);
+
+  const [ingredientName, setIngredientName] = useState('');
+
+  console.log(ingredientName);
+
+  const redirectToFoods = () => {
+    setSearchInputs(ingredientName);
+    history.push('/foods');
+  };
+  const redirectToDrinks = () => {
+    setSearchInputs(ingredientName);
+  /*   history.push('/drinks'); */
+  };
 
   return (
     <div>
@@ -28,9 +41,15 @@ function ExploreIngredient() {
             <h2 data-testid="page-title">Explore Foods Ingredients</h2>
             { mealIngredients.length > 0
               ? mealIngredients.map((ingredient, index) => (
-                <div
+                <button
+                  type="button"
+                  value={ ingredient.strIngredient }
                   key={ ingredient.idIngredient }
                   data-testid={ `${index}-ingredient-card` }
+                  onClick={ () => {
+                    setIngredientName(ingredient.strIngredient);
+                    redirectToFoods();
+                  } }
                 >
                   <img
                     src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
@@ -42,7 +61,7 @@ function ExploreIngredient() {
                       { ingredient.strIngredient }
                     </span>
                   </div>
-                </div>
+                </button>
               ))
               : '' }
           </div>
@@ -52,7 +71,13 @@ function ExploreIngredient() {
             <h2 data-testid="page-title">Explore Drinks Ingredients</h2>
             { drinksIngredients.length > 0
               ? drinksIngredients.map((ingredient, index) => (
-                <div
+                <button
+                  type="button"
+                  value={ ingredient.strIngredient1 }
+                  onClick={ () => {
+                    setIngredientName(ingredient.strIngredient1);
+                    redirectToDrinks();
+                  } }
                   key={ ingredient.strIngredient1 }
                   data-testid={ `${index}-ingredient-card` }
                 >
@@ -66,7 +91,7 @@ function ExploreIngredient() {
                       { ingredient.strIngredient1 }
                     </span>
                   </div>
-                </div>
+                </button>
               ))
               : '' }
           </div>

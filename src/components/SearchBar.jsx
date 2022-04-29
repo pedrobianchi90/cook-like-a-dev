@@ -16,9 +16,10 @@ function SearchBar() {
   const {
     setDrinksData,
     setFoodsData,
+    searchInputs,
+    setSearchInputs,
   } = useContext(myContext);
 
-  const [searchInputs, setSearchInputs] = useState('');
   const [filterBtn, setFilterBtn] = useState('');
   const MAX = 12;
   const location = useLocation();

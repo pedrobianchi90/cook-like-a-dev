@@ -36,6 +36,7 @@ function RecipesProvider({ children }) {
   const [drinkRandom, setDrinkRandom] = useState([]);
   const [mealIngredients, setMealIngredients] = useState([]);
   const [drinksIngredients, setDrinkIngredients] = useState([]);
+  const [searchInputs, setSearchInputs] = useState('');
 
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
@@ -122,6 +123,8 @@ function RecipesProvider({ children }) {
     drinkRandom,
     mealIngredients,
     drinksIngredients,
+    searchInputs,
+    setSearchInputs,
   };
 
   return (
