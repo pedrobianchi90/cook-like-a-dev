@@ -35,7 +35,7 @@ function SearchBar() {
     } if (filterBtn === 'inputLetter') {
       output = await fetchMealsFirstLetter(searchInputs);
     } if (output !== null && filterBtn !== '') {
-      console.log(output);
+      // console.log(output);
       return setFoodsData(output.slice(0, MAX));
     } global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
