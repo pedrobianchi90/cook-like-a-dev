@@ -37,6 +37,8 @@ function RecipesProvider({ children }) {
   const [searchInputs, setSearchInputs] = useState('');
   const [mealIngredients, setMealIngredients] = useState([]);
   const [drinksIngredients, setDrinkIngredients] = useState([]);
+  const [ingredientMealName, setIngredientMealName] = useState('');
+  const [ingredientDrinkName, setIngredientDrinkName] = useState('');
 
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
@@ -106,6 +108,8 @@ function RecipesProvider({ children }) {
   const store = {
     drinksData,
     setDrinksData,
+    setMeals,
+    setDrinks,
     foodsData,
     setFoodsData,
     meals,
@@ -125,6 +129,10 @@ function RecipesProvider({ children }) {
     setSearchInputs,
     mealIngredients,
     drinksIngredients,
+    ingredientMealName,
+    setIngredientMealName,
+    ingredientDrinkName,
+    setIngredientDrinkName,
   };
 
   return (

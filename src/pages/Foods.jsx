@@ -11,7 +11,6 @@ import ListFoods from '../components/ListFoods';
 function Foods() {
   const [state, setState] = useState(false);
   const { foodsData } = useContext(myContext);
-  console.log(foodsData);
 
   if (foodsData.length === 1) {
     return <Redirect to={ `/foods/${foodsData[0].idMeal}` } />;
