@@ -1,30 +1,56 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import profileIcon from '../images/profileIcon.svg';
 import RecipeContext from '../context/RecipeContext';
+import ExploreFoodsIngredients from '../components/ExploreFoodsIngredients';
+import ExploreDinksIngredients from '../components/ExploreDrinksIngredients';
+import {
+  fetchMealsIngredient,
+} from '../helper/fetchMeal';
+import {
+  fetchDrinksIngredients,
+} from '../helper/fetchDinks';
 
 function ExploreIngredient() {
   const location = useLocation();
   const history = useHistory();
+  const MAX = 12;
   const {
-    mealIngredients,
-    drinksIngredients,
-    setSearchInputs,
+    ingredientMealName,
+    setIngredientMealName,
+    ingredientDrinkName,
+    setIngredientDrinkName,
+    setFoodsData,
+    setDrinksData,
   } = useContext(RecipeContext);
+  useEffect(() => {
+    const redirectToFoods = async () => {
+      if (ingredientMealName !== '') {
+        const output = await fetchMealsIngredient(ingredientMealName);
+        setFoodsData(output.slice(0, MAX));
+        if (output !== '') {
+          history.push('/foods');
+          setIngredientMealName('');
+        }
+      }
+    };
+    redirectToFoods();
+  }, [ingredientMealName]);
 
-  const [ingredientName, setIngredientName] = useState('');
-
-  console.log(ingredientName);
-
-  const redirectToFoods = () => {
-    setSearchInputs(ingredientName);
-    history.push('/foods');
-  };
-  const redirectToDrinks = () => {
-    setSearchInputs(ingredientName);
-  /*   history.push('/drinks'); */
-  };
+  useEffect(() => {
+    const redirectToDrinks = async () => {
+      if (ingredientDrinkName !== '') {
+        const output = await fetchDrinksIngredients(ingredientDrinkName);
+        setDrinksData(output.slice(0, MAX));
+        if (output !== '') {
+          history.push('/drinks');
+          setIngredientDrinkName('');
+        }
+      }
+    };
+    redirectToDrinks();
+  }, [ingredientDrinkName]);
 
   return (
     <div>
@@ -37,64 +63,10 @@ function ExploreIngredient() {
       </header>
       {location.pathname === '/explore/foods/ingredients'
         ? (
-          <div>
-            <h2 data-testid="page-title">Explore Foods Ingredients</h2>
-            { mealIngredients.length > 0
-              ? mealIngredients.map((ingredient, index) => (
-                <button
-                  type="button"
-                  value={ ingredient.strIngredient }
-                  key={ ingredient.idIngredient }
-                  data-testid={ `${index}-ingredient-card` }
-                  onClick={ () => {
-                    setIngredientName(ingredient.strIngredient);
-                    redirectToFoods();
-                  } }
-                >
-                  <img
-                    src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-                    alt={ ingredient.strIngredient }
-                    data-testid={ `${index}-card-img` }
-                  />
-                  <div>
-                    <span data-testid={ `${index}-card-name` }>
-                      { ingredient.strIngredient }
-                    </span>
-                  </div>
-                </button>
-              ))
-              : '' }
-          </div>
+          <ExploreFoodsIngredients />
         )
         : (
-          <div>
-            <h2 data-testid="page-title">Explore Drinks Ingredients</h2>
-            { drinksIngredients.length > 0
-              ? drinksIngredients.map((ingredient, index) => (
-                <button
-                  type="button"
-                  value={ ingredient.strIngredient1 }
-                  onClick={ () => {
-                    setIngredientName(ingredient.strIngredient1);
-                    redirectToDrinks();
-                  } }
-                  key={ ingredient.strIngredient1 }
-                  data-testid={ `${index}-ingredient-card` }
-                >
-                  <img
-                    src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
-                    alt={ ingredient.strIngredient1 }
-                    data-testid={ `${index}-card-img` }
-                  />
-                  <div>
-                    <span data-testid={ `${index}-card-name` }>
-                      { ingredient.strIngredient1 }
-                    </span>
-                  </div>
-                </button>
-              ))
-              : '' }
-          </div>
+          <ExploreDinksIngredients />
         )}
       <Footer />
     </div>

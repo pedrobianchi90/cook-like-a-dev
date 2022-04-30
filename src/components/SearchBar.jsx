@@ -18,6 +18,8 @@ function SearchBar() {
     setFoodsData,
     searchInputs,
     setSearchInputs,
+    setDrinks,
+    setMeals,
   } = useContext(myContext);
 
   const [filterBtn, setFilterBtn] = useState('');
@@ -36,6 +38,7 @@ function SearchBar() {
       output = await fetchMealsFirstLetter(searchInputs);
     } if (output !== null && filterBtn !== '') {
       // console.log(output);
+      setMeals([]);
       return setFoodsData(output.slice(0, MAX));
     } global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
@@ -51,6 +54,7 @@ function SearchBar() {
     } if (filterBtn === 'inputLetter') {
       output = await fetchDrinksFirstLetter(searchInputs);
     } if (output !== null && filterBtn !== '') {
+      setDrinks([]);
       return setDrinksData(output.slice(0, MAX));
     } global.alert('Sorry, we haven\'t found any recipes for these filters.');
   };
