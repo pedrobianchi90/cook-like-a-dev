@@ -16,16 +16,15 @@ function Details() {
   const [state, setState] = useState('Xablau');
   console.log(state);
 
-  const getRecipe = async (recipe) => {
-    let myRecipe;
-    if (recipe === 'foods') myRecipe = await foodById(myId);
-    if (recipe === 'drinks') myRecipe = await drinkById(myId);
-    setState(myRecipe);
-  };
-
   useEffect(() => {
+    const getRecipe = async (recipe) => {
+      let myRecipe;
+      if (recipe === 'foods') myRecipe = await foodById(myId);
+      if (recipe === 'drinks') myRecipe = await drinkById(myId);
+      setState(myRecipe);
+    };
     getRecipe(typeRecipe);
-  }, []);
+  }, [myId, typeRecipe]);
 
   return (
     <div>
@@ -80,7 +79,14 @@ function Details() {
         Recomended
         <li data-testid="0-recomendation-card"> cards de recomendção...</li>
       </ul>
-      { state[0].strMealThumb ? <p data-testid="video">Xablau</p> : ''}
+      { state[0].strMealThumb
+        ? (
+          <video data-testid="video" width="320" height="240" controls muted>
+            <source src={ state[0].strYoutube } type="video/mp4" />
+
+            Your browser does not support the video tag.
+          </video>)
+        : ''}
       <Link
         to={ state[0].strMealThumb ? `/foods/${myId}/in-progress`
           : `/drinks/${myId}/in-progress` }
