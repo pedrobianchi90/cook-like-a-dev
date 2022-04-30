@@ -34,6 +34,7 @@ function RecipesProvider({ children }) {
   const [filterDrinkCategory, setFilterDrinkCategory] = useState([]);
   const [mealRandom, setMealRandom] = useState([]);
   const [drinkRandom, setDrinkRandom] = useState([]);
+  const [searchInputs, setSearchInputs] = useState('');
   const [mealIngredients, setMealIngredients] = useState([]);
   const [drinksIngredients, setDrinkIngredients] = useState([]);
 
@@ -120,6 +121,8 @@ function RecipesProvider({ children }) {
     getFilterDrinkCategory,
     mealRandom,
     drinkRandom,
+    searchInputs,
+    setSearchInputs,
     mealIngredients,
     drinksIngredients,
   };

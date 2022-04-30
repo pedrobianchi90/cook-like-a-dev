@@ -11,6 +11,7 @@ import myContext from '../context/RecipeContext';
 function Drinks() {
   const [state, setState] = useState(false);
   const { drinksData } = useContext(myContext);
+  console.log(drinksData);
 
   return (
     <div>
@@ -31,6 +32,25 @@ function Drinks() {
       { state && <SearchBar />}
 
       <DrinksCategories />
+      { drinksData.length > 0
+        ? (
+          <div>
+            {drinksData.map((recipe, index) => (
+              <div
+                key={ recipe.idDrink }
+                data-testid={ `${index}-recipe-card` }
+              >
+                <Link to={ `/foods/${recipe.idDrink}` }>
+                  <img
+                    src={ recipe.strDrinkThumb }
+                    alt="strDrinkThumb"
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <h2 data-testid={ `${index}-card-name` }>{recipe.strDrink}</h2>
+                </Link>
+              </div>
+            ))}
+          </div>) : ('')}
 
       <ListDrinks />
 
