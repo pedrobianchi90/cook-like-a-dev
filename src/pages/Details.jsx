@@ -27,9 +27,7 @@ function Details() {
 
   const copyToClipboard = ({ target }) => {
     copy(target.value);
-    console.log(target.value);
-    // alert('Link copied!');
-    console.log(state[0].strSource);
+    alert('Link copied!');
   };
 
   return (
@@ -55,9 +53,17 @@ function Details() {
         value={ state[0].strSource }
         onClick={ copyToClipboard }
       >
-        { shareIcon }
+        <img
+          src={ shareIcon }
+          alt="botão de Favoritar"
+        />
       </button>
-      <button type="button" data-testid="favorite-btn">{ whiteHeartIcon }</button>
+      <button type="button" data-testid="favorite-btn">
+        <img
+          src={ whiteHeartIcon }
+          alt="botão de Favoritar"
+        />
+      </button>
       <ul>
         Ingredientes:
         <li data-testid="0-ingredient-name-and-measure">
