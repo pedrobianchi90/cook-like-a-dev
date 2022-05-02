@@ -5,15 +5,14 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import style from '../Details.module.css';
 import { foodById, drinkById } from '../services/fetchRecipeById';
 
+const copy = require('clipboard-copy');
+
 function Details() {
   const location = useLocation();
   const myId = location.pathname.split('/')[2];
-  // const myId = '52941'; // food
-  // const myId = '12798'; // drink
   const typeRecipe = location.pathname.split('/')[1];
-  // console.log(location.pathname.split('/')[2]);
 
-  const [state, setState] = useState('Xablau');
+  const [state, setState] = useState(['VAZIO']);
   console.log(state);
 
   useEffect(() => {
@@ -26,6 +25,13 @@ function Details() {
     getRecipe(typeRecipe);
   }, [myId, typeRecipe]);
 
+  const copyToClipboard = ({ target }) => {
+    copy(target.value);
+    console.log(target.value);
+    // alert('Link copied!');
+    console.log(state[0].strSource);
+  };
+
   return (
     <div>
       <img
@@ -36,14 +42,22 @@ function Details() {
         data-testid="recipe-photo"
       />
       <h2 data-testid="recipe-title">
-        {state.strDrink ? state[0].strDrink
+        {state[0].strDrink ? state[0].strDrink
           : state[0].strMeal}
 
       </h2>
-      { state[0].strDrinkThumb ? <span>{state[0].strAlcoholic}</span> : ''}
-      <button type="button" data-testid="share-btn">{ shareIcon }</button>
+      { state[0].strDrinkThumb
+        ? <p data-testid="recipe-category">{state[0].strAlcoholic}</p>
+        : <p data-testid="recipe-category">{state[0].strCategory}</p>}
+      <button
+        type="button"
+        data-testid="share-btn"
+        value={ state[0].strSource }
+        onClick={ copyToClipboard }
+      >
+        { shareIcon }
+      </button>
       <button type="button" data-testid="favorite-btn">{ whiteHeartIcon }</button>
-      <p data-testid="recipe-category">{state[0].strCategory}</p>
       <ul>
         Ingredientes:
         <li data-testid="0-ingredient-name-and-measure">
