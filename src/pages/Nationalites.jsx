@@ -15,7 +15,6 @@ function Nationalites() {
   const handleChange = async ({ target }) => {
     const { value } = target;
     const limitMealNationalities = 12;
-    // const noFilter = await fetchAllMealApi();
     const filterNationalities = await fetchAllMealNationalities(value);
     if (value !== 'All') {
       setMeals(filterNationalities.slice(0, limitMealNationalities));
