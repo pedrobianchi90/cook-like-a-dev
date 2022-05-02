@@ -123,6 +123,7 @@ function Details() {
             Your browser does not support the video tag.
           </video>)
         : ''}
+
       <Link
         to={ state[0].strMealThumb ? `/foods/${myId}/in-progress`
           : `/drinks/${myId}/in-progress` }
@@ -135,6 +136,7 @@ function Details() {
           StarRecipe
         </button>
       </Link>
+
     </div>
   );
 }
