@@ -24,6 +24,7 @@ function ExploreIngredient() {
     setFoodsData,
     setDrinksData,
   } = useContext(RecipeContext);
+
   useEffect(() => {
     const redirectToFoods = async () => {
       if (ingredientMealName !== '') {
@@ -36,7 +37,7 @@ function ExploreIngredient() {
       }
     };
     redirectToFoods();
-  }, [ingredientMealName]);
+  }, [ingredientMealName, history, setFoodsData, setIngredientMealName]);
 
   useEffect(() => {
     const redirectToDrinks = async () => {
@@ -50,7 +51,7 @@ function ExploreIngredient() {
       }
     };
     redirectToDrinks();
-  }, [ingredientDrinkName]);
+  }, [history, ingredientDrinkName, setDrinksData, setIngredientDrinkName]);
 
   return (
     <div>
