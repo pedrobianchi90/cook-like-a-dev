@@ -20,13 +20,15 @@ import {
 import {
   fetchFoodIngredients,
   fetchDrinksIngredients,
-} from '../services/fetchIngredientsApi';
+  fetchMealNationalities,
+} from '../services/fetchIngredientsNationalitiesApi';
 
 function RecipesProvider({ children }) {
   const [filter, setFilter] = useState({ bool: false, name: 'All' });
   const [drinksData, setDrinksData] = useState('');
   const [foodsData, setFoodsData] = useState([]);
   const [meals, setMeals] = useState([]);
+  const [backup, setBackup] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [mealCategories, setMealCategories] = useState();
   const [filterMealCategory, setFilterMealCategory] = useState([]);
@@ -40,9 +42,12 @@ function RecipesProvider({ children }) {
   const [ingredientMealName, setIngredientMealName] = useState('');
   const [ingredientDrinkName, setIngredientDrinkName] = useState('');
 
+  const [nationalities, setNationalities] = useState([]);
+
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
     setMeals([...mealsResponse]);
+    setBackup([...mealsResponse]);
   }
 
   async function getDrinks() {
@@ -94,6 +99,11 @@ function RecipesProvider({ children }) {
     setDrinkIngredients([...drinkIngredientsResponse]);
   }
 
+  async function getNationalities() {
+    const nationalitiesResponse = await fetchMealNationalities();
+    setNationalities([...nationalitiesResponse]);
+  }
+
   useEffect(() => {
     getDrinks();
     getDrinksCategories();
@@ -103,9 +113,11 @@ function RecipesProvider({ children }) {
     getRandomDrink();
     getFoodIngredient();
     getDrinkIngredient();
+    getNationalities();
   }, []);
 
   const store = {
+    backup,
     drinksData,
     setDrinksData,
     setMeals,
@@ -133,6 +145,8 @@ function RecipesProvider({ children }) {
     setIngredientMealName,
     ingredientDrinkName,
     setIngredientDrinkName,
+    nationalities,
+    setNationalities,
   };
 
   return (

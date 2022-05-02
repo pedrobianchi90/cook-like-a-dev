@@ -11,7 +11,6 @@ import myContext from '../context/RecipeContext';
 function Drinks() {
   const [state, setState] = useState(false);
   const { drinksData } = useContext(myContext);
-  console.log(drinksData);
 
   return (
     <div>
