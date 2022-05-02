@@ -1,8 +1,13 @@
 import React from 'react';
+import IngredientsDrink from '../components/IngredientsDrink';
+import RecipesHeader from '../components/RecipesHeader';
 
 function Progress() {
   return (
-    <h2>Página de Progresso</h2>
+    <div>
+      <RecipesHeader />
+      <IngredientsDrink />
+    </div>
   );
 }
 
