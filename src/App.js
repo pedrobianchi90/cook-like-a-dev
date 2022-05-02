@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import Explore from './pages/Explore';
 import Profile from './pages/Profile';
-// import Progress from './pages/Progress';
+import Progress from './pages/Progress';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoriteRecipe from './pages/FavoriteRecipe';
 import Details from './pages/Details';
@@ -29,7 +30,7 @@ function App() {
           <Route exact path="/foods/details" component={ Details } />
 
           <Route exact path="/drinks/{id-da-receita}" component={ Details } />
-          {/* <Route exact path="/foods/{id-da-receita}/in-progress" component={ Progress } /> */}
+          <Route exact path="/drinks/in-progress" component={ Progress } />
           {/* <Route
             exact
             path="/drinks/:id/in-progress"
