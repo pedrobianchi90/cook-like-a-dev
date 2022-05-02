@@ -63,7 +63,6 @@ function Details() {
         />
       </button>
       { alert && <span>Link copied!</span> }
-
       <button type="button" data-testid="favorite-btn">
         <img
           src={ whiteHeartIcon }
