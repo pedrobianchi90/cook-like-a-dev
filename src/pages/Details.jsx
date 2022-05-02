@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import '../Footer.css';
+import style from '../Details.module.css';
 import { foodById, drinkById } from '../services/fetchRecipeById';
+
+const copy = require('clipboard-copy');
 
 function Details() {
   const location = useLocation();
   const myId = location.pathname.split('/')[2];
-  // const myId = '52941'; // food
-  // const myId = '12798'; // drink
   const typeRecipe = location.pathname.split('/')[1];
-  // console.log(location.pathname.split('/')[2]);
 
-  const [state, setState] = useState('Xablau');
+  const [state, setState] = useState(['VAZIO']);
   console.log(state);
 
   useEffect(() => {
@@ -26,6 +25,13 @@ function Details() {
     getRecipe(typeRecipe);
   }, [myId, typeRecipe]);
 
+  const copyToClipboard = ({ target }) => {
+    copy(target.value);
+    console.log(target.value);
+    // alert('Link copied!');
+    console.log(state[0].strSource);
+  };
+
   return (
     <div>
       <img
@@ -36,14 +42,22 @@ function Details() {
         data-testid="recipe-photo"
       />
       <h2 data-testid="recipe-title">
-        {state.strDrink ? state[0].strDrink
+        {state[0].strDrink ? state[0].strDrink
           : state[0].strMeal}
 
       </h2>
-      { state[0].strDrinkThumb ? <span>{state[0].strAlcoholic}</span> : ''}
-      <button type="button" data-testid="share-btn">{ shareIcon }</button>
+      { state[0].strDrinkThumb
+        ? <p data-testid="recipe-category">{state[0].strAlcoholic}</p>
+        : <p data-testid="recipe-category">{state[0].strCategory}</p>}
+      <button
+        type="button"
+        data-testid="share-btn"
+        value={ state[0].strSource }
+        onClick={ copyToClipboard }
+      >
+        { shareIcon }
+      </button>
       <button type="button" data-testid="favorite-btn">{ whiteHeartIcon }</button>
-      <p data-testid="recipe-category">{state[0].strCategory}</p>
       <ul>
         Ingredientes:
         <li data-testid="0-ingredient-name-and-measure">
@@ -52,24 +66,60 @@ function Details() {
         <li data-testid="1-ingredient-name-and-measure">
           {`${state[0].strIngredient2} - ${state[0].strMeasure2}`}
         </li>
-        <li>{`${state[0].strIngredient3} - ${state[0].strMeasure3}`}</li>
-        <li>{`${state[0].strIngredient4} - ${state[0].strMeasure4}`}</li>
-        <li>{`${state[0].strIngredient5} - ${state[0].strMeasure5}`}</li>
-        {/* <li>{`${state[0].strIngredient6} - ${state[0].strMeasure6}`}</li>
-        <li>{`${state[0].strIngredient7} - ${state[0].strMeasure7}`}</li>
-        <li>{`${state[0].strIngredient8} - ${state[0].strMeasure8}`}</li>
-        <li>{`${state[0].strIngredient9} - ${state[0].strMeasure9}`}</li>
-        <li>{`${state[0].strIngredient10} - ${state[0].strMeasure10}`}</li>
-        <li>{`${state[0].strIngredient11} - ${state[0].strMeasure11}`}</li>
-        <li>{`${state[0].strIngredient12} - ${state[0].strMeasure12}`}</li>
-        <li>{`${state[0].strIngredient13} - ${state[0].strMeasure13}`}</li>
-        <li>{`${state[0].strIngredient14} - ${state[0].strMeasure14}`}</li>
-        <li>{`${state[0].strIngredient15} - ${state[0].strMeasure15}`}</li>
-        <li>{`${state[0].strIngredient16} - ${state[0].strMeasure16}`}</li>
-        <li>{`${state[0].strIngredient17} - ${state[0].strMeasure17}`}</li>
-        <li>{`${state[0].strIngredient18} - ${state[0].strMeasure18}`}</li>
-        <li>{`${state[0].strIngredient19} - ${state[0].strMeasure19}`}</li>
-        <li>{`${state[0].strIngredient20} - ${state[0].strMeasure20}`}</li> */}
+        <li data-testid="2-ingredient-name-and-measure">
+          {`${state[0].strIngredient3} - ${state[0].strMeasure3}`}
+        </li>
+        <li data-testid="3-ingredient-name-and-measure">
+          {`${state[0].strIngredient4} - ${state[0].strMeasure4}`}
+        </li>
+        <li data-testid="4-ingredient-name-and-measure">
+          {`${state[0].strIngredient5} - ${state[0].strMeasure5}`}
+        </li>
+        <li data-testid="5-ingredient-name-and-measure">
+          {`${state[0].strIngredient6} - ${state[0].strMeasure6}`}
+        </li>
+        <li data-testid="6-ingredient-name-and-measure">
+          {`${state[0].strIngredient7} - ${state[0].strMeasure7}`}
+        </li>
+        <li data-testid="7-ingredient-name-and-measure">
+          {`${state[0].strIngredient8} - ${state[0].strMeasure8}`}
+        </li>
+        <li data-testid="8-ingredient-name-and-measure">
+          {`${state[0].strIngredient9} - ${state[0].strMeasure9}`}
+        </li>
+        <li data-testid="9-ingredient-name-and-measure">
+          {`${state[0].strIngredient10} - ${state[0].strMeasure10}`}
+        </li>
+        <li data-testid="10-ingredient-name-and-measure">
+          {`${state[0].strIngredient11} - ${state[0].strMeasure11}`}
+        </li>
+        <li data-testid="11-ingredient-name-and-measure">
+          {`${state[0].strIngredient12} - ${state[0].strMeasure12}`}
+        </li>
+        <li data-testid="12-ingredient-name-and-measure">
+          {`${state[0].strIngredient13} - ${state[0].strMeasure13}`}
+        </li>
+        <li data-testid="13-ingredient-name-and-measure">
+          {`${state[0].strIngredient14} - ${state[0].strMeasure14}`}
+        </li>
+        <li data-testid="14-ingredient-name-and-measure">
+          {`${state[0].strIngredient15} - ${state[0].strMeasure15}`}
+        </li>
+        <li data-testid="15-ingredient-name-and-measure">
+          {`${state[0].strIngredient16} - ${state[0].strMeasure16}`}
+        </li>
+        <li data-testid="16-ingredient-name-and-measure">
+          {`${state[0].strIngredient17} - ${state[0].strMeasure17}`}
+        </li>
+        <li data-testid="17-ingredient-name-and-measure">
+          {`${state[0].strIngredient18} - ${state[0].strMeasure18}`}
+        </li>
+        <li data-testid="18-ingredient-name-and-measure">
+          {`${state[0].strIngredient19} - ${state[0].strMeasure19}`}
+        </li>
+        <li data-testid="19-ingredient-name-and-measure">
+          {`${state[0].strIngredient20} - ${state[0].strMeasure20}`}
+        </li>
       </ul>
       <ul data-testid="instructions">
         Instruções:
@@ -87,6 +137,7 @@ function Details() {
             Your browser does not support the video tag.
           </video>)
         : ''}
+
       <Link
         to={ state[0].strMealThumb ? `/foods/${myId}/in-progress`
           : `/drinks/${myId}/in-progress` }
@@ -94,12 +145,12 @@ function Details() {
         <button
           data-testid="start-recipe-btn"
           type="button"
-          c
-          lassName="footer"
+          className={ style.footer }
         >
           StarRecipe
         </button>
       </Link>
+
     </div>
   );
 }
