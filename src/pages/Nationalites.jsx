@@ -15,11 +15,11 @@ function Nationalites() {
   const handleChange = async ({ target }) => {
     const { value } = target;
     const limitMealNationalities = 12;
-    const filterNationalities = await fetchAllMealNationalities(value);
     if (value !== 'All') {
+      const filterNationalities = await fetchAllMealNationalities(value);
       setMeals(filterNationalities.slice(0, limitMealNationalities));
     } else if (value === 'All') {
-      setMeals(backup.concat(meals));
+      setMeals(backup);
     }
   };
 
