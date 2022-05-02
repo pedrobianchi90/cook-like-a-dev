@@ -3,9 +3,14 @@ import myContext from '../context/RecipeContext';
 
 function IngredientsDrink() {
   const { drinks } = useContext(myContext);
+  const indexTest = 0;
   return (
     <div>
-      { drinks[0].strIngredient1 }
+      <label htmlFor="ingredients" data-testid={ `${indexTest}-ingredient-step` }>
+        <input name="ingredients" type="checkbox" />
+        { drinks[0].strIngredient1 }
+
+      </label>
     </div>
   );
 }

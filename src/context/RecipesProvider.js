@@ -22,6 +22,8 @@ import {
   fetchDrinksIngredients,
 } from '../services/fetchIngredientsApi';
 
+import fetchCocktailById from '../services/fetchCocktailById';
+
 function RecipesProvider({ children }) {
   const [filter, setFilter] = useState({ bool: false, name: 'All' });
   const [drinksData, setDrinksData] = useState('');
@@ -36,6 +38,7 @@ function RecipesProvider({ children }) {
   const [drinkRandom, setDrinkRandom] = useState([]);
   const [mealIngredients, setMealIngredients] = useState([]);
   const [drinksIngredients, setDrinkIngredients] = useState([]);
+  const [drinkInProgress, setDrinkInProgress] = useState(null);
 
   async function getMeals() {
     const mealsResponse = await fetchMealApi();
@@ -91,6 +94,11 @@ function RecipesProvider({ children }) {
     setDrinkIngredients([...drinkIngredientsResponse]);
   }
 
+  async function getDrinkInProgress() {
+    const drinkInProgressResponse = await fetchCocktailById();
+    setDrinkInProgress(drinkInProgressResponse);
+  }
+
   useEffect(() => {
     getDrinks();
     getDrinksCategories();
@@ -122,6 +130,8 @@ function RecipesProvider({ children }) {
     drinkRandom,
     mealIngredients,
     drinksIngredients,
+    drinkInProgress,
+    getDrinkInProgress,
   };
 
   return (

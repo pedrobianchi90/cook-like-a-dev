@@ -1,21 +1,15 @@
-import React, { useContext, useEffect } from 'react';
-import myContext from '../context/RecipeContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function RecipesHeader() {
-  const { drinks } = useContext(myContext);
-  const iconStyle = {
-    'font-size': '24px',
-  };
-
-  useEffect(() => (
-    console.log(drinks)
-  ));
+function RecipesHeader(props) {
+  const iconStyle = { fontSize: '24px' };
+  const { thumb, name, category } = props;
 
   return (
     <div>
-      <img data-testid="recipe-photo" src={ drinks[0].strDrinkThumb } alt="" />
+      <img data-testid="recipe-photo" src={ thumb } alt="" />
 
-      <h3 data-testid="recipe-title">{ drinks[0].strDrink }</h3>
+      <h3 data-testid="recipe-title">{ name }</h3>
 
       <button type="button" data-testid="share-btn">
         <i style={ iconStyle } className="fa">&#xf1e0;</i>
@@ -25,9 +19,15 @@ function RecipesHeader() {
         <i style={ iconStyle } className="fa">&#xf1e0;</i>
       </button>
 
-      <h4>{ drinks[0].strCategory }</h4>
+      <h4>{ category }</h4>
     </div>
   );
 }
+
+RecipesHeader.propTypes = {
+  thumb: PropTypes.string,
+  name: PropTypes.string,
+  category: PropTypes.string,
+}.isRequired;
 
 export default RecipesHeader;
