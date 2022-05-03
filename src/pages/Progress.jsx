@@ -1,43 +1,44 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import RecipesHeader from '../components/RecipesHeader';
-// import DrinkInstruction from '../components/DrinkInstructions';
+import DrinkInstruction from '../components/DrinkInstructions';
 import IngredientsDrink from '../components/IngredientsDrink';
-// import myContext from '../context/RecipeContext';
-import fetchCocktailById from '../services/fetchCocktailById';
+import myContext from '../context/RecipeContext';
 
 function Progress() {
+  const history = useHistory();
   const location = useLocation();
   const drinkId = location.pathname.split('/')[2];
-  // const { drinks } = useContext(myContext);
-
-  const receiver = fetchCocktailById(drinkId);
+  const {
+    getDrinkInProgress,
+    drinkInProgress,
+    disableButton,
+  } = useContext(myContext);
 
   useEffect(() => {
-    console.log(receiver.strDrinkThumb);
-    console.log(receiver.strDrink);
-    console.log(receiver.strCategory);
-  });
+    getDrinkInProgress(drinkId);
+  }, []);
 
   return (
     <div>
       {
-        receiver
+        drinkInProgress
           ? (
             <>
-              <RecipesHeader
-                thumb={ receiver.strDrinkThumb }
-                name={ receiver.strDrink }
-                category={ receiver.strCategory }
-              />
-              <IngredientsDrink ingredients={ [receiver.strIngredient1] } />
-              {/* <DrinkInstruction /> */}
+              <RecipesHeader />
+              <IngredientsDrink />
+              <DrinkInstruction />
             </>
           )
           : 'Carregando...'
       }
 
-      <button type="button" data-testid="finish-recipe-btn">
+      <button
+        type="button"
+        data-testid="finish-recipe-btn"
+        disabled={ disableButton }
+        onClick={ () => history.push('/done-recipes') }
+      >
         Finish Recipe
       </button>
     </div>
