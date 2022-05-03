@@ -133,6 +133,7 @@ function RecipesProvider({ children }) {
       alcoholicOrNot: 'Alcoholic',
       name: 'Negroni',
       image: 'https://feedmechannel.com/wp-content/uploads/2019/06/receita-de-negroni-1280x1024.jpg',
+      doneDate: '12/03/2022',
       tags: [],
     }]));
   }, []);

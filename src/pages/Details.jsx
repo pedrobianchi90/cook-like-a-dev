@@ -15,6 +15,8 @@ function Details() {
   const [state, setState] = useState(['VAZIO']);
   console.log(state);
 
+  const [alert, setAlert] = useState(false);
+
   useEffect(() => {
     const getRecipe = async (recipe) => {
       let myRecipe;
@@ -25,11 +27,9 @@ function Details() {
     getRecipe(typeRecipe);
   }, [myId, typeRecipe]);
 
-  const copyToClipboard = ({ target }) => {
-    copy(target.value);
-    console.log(target.value);
-    // alert('Link copied!');
-    console.log(state[0].strSource);
+  const copyToClipboard = (url) => {
+    copy(url);
+    setAlert(true);
   };
 
   return (
@@ -47,17 +47,28 @@ function Details() {
 
       </h2>
       { state[0].strDrinkThumb
-        ? <p data-testid="recipe-category">{state[0].strAlcoholic}</p>
+        ? (
+          <p data-testid="recipe-category">
+            {`${state[0].strAlcoholic} ${state[0].strCategory}`}
+          </p>)
         : <p data-testid="recipe-category">{state[0].strCategory}</p>}
       <button
         type="button"
         data-testid="share-btn"
-        value={ state[0].strSource }
-        onClick={ copyToClipboard }
+        onClick={ () => copyToClipboard(`http://localhost:3000${location.pathname}`) }
       >
-        { shareIcon }
+        <img
+          src={ shareIcon }
+          alt="Coração de favorito"
+        />
       </button>
-      <button type="button" data-testid="favorite-btn">{ whiteHeartIcon }</button>
+      { alert && <span>Link copied!</span> }
+      <button type="button" data-testid="favorite-btn">
+        <img
+          src={ whiteHeartIcon }
+          alt="botão de Favoritar"
+        />
+      </button>
       <ul>
         Ingredientes:
         <li data-testid="0-ingredient-name-and-measure">
