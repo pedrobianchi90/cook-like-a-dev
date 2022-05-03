@@ -22,6 +22,7 @@ import {
   fetchDrinksIngredients,
   fetchMealNationalities,
 } from '../services/fetchIngredientsNationalitiesApi';
+import { foodById, drinkById } from '../services/fetchRecipeById';
 
 function RecipesProvider({ children }) {
   const [filter, setFilter] = useState({ bool: false, name: 'All' });
@@ -41,6 +42,7 @@ function RecipesProvider({ children }) {
   const [drinksIngredients, setDrinkIngredients] = useState([]);
   const [ingredientMealName, setIngredientMealName] = useState('');
   const [ingredientDrinkName, setIngredientDrinkName] = useState('');
+  const [recipe, setRecipe] = useState(['vazio']);
 
   const [nationalities, setNationalities] = useState([]);
 
@@ -104,6 +106,13 @@ function RecipesProvider({ children }) {
     setNationalities([...nationalitiesResponse]);
   }
 
+  const getRecipe = async (recipes, id) => {
+    let myRecipes;
+    if (recipes === 'foods') myRecipes = await foodById(id);
+    if (recipes === 'drinks') myRecipes = await drinkById(id);
+    setRecipe(myRecipes);
+  };
+
   useEffect(() => {
     getDrinks();
     getDrinksCategories();
@@ -147,6 +156,9 @@ function RecipesProvider({ children }) {
     setIngredientDrinkName,
     nationalities,
     setNationalities,
+    recipe,
+    setRecipe,
+    getRecipe,
   };
 
   return (
