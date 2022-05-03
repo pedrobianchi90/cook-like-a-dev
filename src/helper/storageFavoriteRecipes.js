@@ -5,8 +5,8 @@ if (!JSON.parse(localStorage.getItem(FAVORITE_RECIPE_KEY))) {
 }
 const readFavoriteRecipe = () => JSON.parse(localStorage.getItem(FAVORITE_RECIPE_KEY));
 
-const saveFavoriteRecipe = (favoriteSongs) => localStorage
-  .setItem(FAVORITE_RECIPE_KEY, JSON.stringify(favoriteSongs));
+const saveFavoriteRecipe = (favoriteRecipes) => localStorage
+  .setItem(FAVORITE_RECIPE_KEY, JSON.stringify(favoriteRecipes));
 
 export const addRecipe = (recipe) => {
   if (recipe) {
@@ -16,6 +16,6 @@ export const addRecipe = (recipe) => {
 };
 
 export const removeRecipe = (recipe) => {
-  const favoriteSongs = readFavoriteRecipe();
-  saveFavoriteRecipe(favoriteSongs.filter(({ id }) => id !== recipe.id));
+  const favoriteRecipes = readFavoriteRecipe();
+  saveFavoriteRecipe(favoriteRecipes.filter(({ id }) => id !== recipe.id));
 };
