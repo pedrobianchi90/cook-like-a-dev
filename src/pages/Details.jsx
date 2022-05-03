@@ -1,17 +1,17 @@
 import React, { useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import style from '../Details.module.css';
+import { useLocation } from 'react-router-dom';
 import ListIngredientDetails from '../components/ListIngredientsDetails';
 import myContext from '../context/RecipeContext';
 import HeaderDetails from '../components/HeaderDetails';
 import ListInstructionsRecomendation from '../components/ListInstructions';
+import FooterDetails from '../components/FooterDetails';
 
 function Details() {
   const location = useLocation();
   const myId = location.pathname.split('/')[2];
   const typeRecipe = location.pathname.split('/')[1];
 
-  const { recipe, getRecipe } = useContext(myContext);
+  const { getRecipe } = useContext(myContext);
 
   useEffect(() => {
     getRecipe(typeRecipe, myId);
@@ -22,19 +22,7 @@ function Details() {
       <HeaderDetails />
       <ListIngredientDetails />
       <ListInstructionsRecomendation />
-      <Link
-        to={ recipe[0].strMealThumb ? `/foods/${myId}/in-progress`
-          : `/drinks/${myId}/in-progress` }
-      >
-        <button
-          data-testid="start-recipe-btn"
-          type="button"
-          className={ style.footer }
-        >
-          StarRecipe
-        </button>
-      </Link>
-
+      <FooterDetails />
     </div>
   );
 }
