@@ -35,7 +35,7 @@ function DoneRecipe() {
         <button
           type="button"
           data-testid="filter-by-food-btn"
-          onClick={ () => setFilter('Food') }
+          onClick={ () => setFilter('food') }
         >
           Food
 
@@ -43,18 +43,18 @@ function DoneRecipe() {
         <button
           type="button"
           data-testid="filter-by-drink-btn"
-          onClick={ () => setFilter('Drink') }
+          onClick={ () => setFilter('drink') }
         >
           Drinks
 
         </button>
         {doneRecipes.filter(({ type }) => type.includes(filter)).map((recipe, index) => (
           <div key={ recipe.id }>
-            { recipe.type === 'Food'
+            {console.log(recipe.name)}
+            { recipe.type === 'food'
               ? (
                 <>
                   <p data-testid={ `${index}-horizontal-top-text` }>
-                    {' '}
                     {`${recipe.nationality} - ${recipe.category}`}
                   </p>
                   <Link to={ `/foods/${recipe.id}` }>
@@ -68,6 +68,7 @@ function DoneRecipe() {
                   <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
                   <button
                     type="button"
+                    src={ shareIcon }
                     data-testid={ `${index}-horizontal-share-btn` }
                     onClick={ () => copyToClipboard(`http://localhost:3000/foods/${recipe.id}`) }
                   >
@@ -91,6 +92,7 @@ function DoneRecipe() {
                   <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
                   <button
                     type="button"
+                    src={ shareIcon }
                     data-testid={ `${index}-horizontal-share-btn` }
                     onClick={ () => copyToClipboard(`http://localhost:3000/drinks/${recipe.id}`) }
                   >
