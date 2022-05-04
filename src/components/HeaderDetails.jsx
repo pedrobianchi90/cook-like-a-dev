@@ -79,6 +79,7 @@ function HeaderDetails() {
       { alert && <span>Link copied!</span> }
       <button
         type="button"
+        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
         data-testid="favorite-btn"
         onClick={ saveFavorite }
       >
