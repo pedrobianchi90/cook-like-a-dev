@@ -17,6 +17,7 @@ function FavoriteRecipe() {
   };
 
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  console.log(favoriteRecipes);
   return (
     <div>
       <header>
@@ -53,7 +54,7 @@ function FavoriteRecipe() {
         {favoriteRecipes
           .filter(({ type }) => type.includes(filter)).map((recipe, index) => (
             <div key={ recipe.id }>
-              {console.log}
+              {console.log(recipe)}
               { recipe.type === 'food'
                 ? (
                   <>
@@ -63,7 +64,7 @@ function FavoriteRecipe() {
                     <Link to={ `/foods/${recipe.id}` }>
                       <img
                         src={ recipe.image }
-                        alt=""
+                        alt="logo-food"
                         data-testid={ `${index}-horizontal-image` }
                       />
                       <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
@@ -84,7 +85,6 @@ function FavoriteRecipe() {
                     >
                       <img src={ blackHeartIcon } alt="logo-share" />
                     </button>
-
                   </>)
                 : (
                   <>
@@ -94,7 +94,7 @@ function FavoriteRecipe() {
                     <Link to={ `/drinks/${recipe.id}` }>
                       <img
                         src={ recipe.image }
-                        alt=""
+                        alt="logo-drink"
                         data-testid={ `${index}-horizontal-image` }
                       />
                       <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>

@@ -108,8 +108,8 @@ function RecipesProvider({ children }) {
 
   const getRecipe = async (recipes, id) => {
     let myRecipes;
-    if (recipes === 'foods') myRecipes = await foodById(id);
-    if (recipes === 'drinks') myRecipes = await drinkById(id);
+    if (recipes === 'food') myRecipes = await foodById(id);
+    if (recipes === 'drink') myRecipes = await drinkById(id);
     setRecipe(myRecipes);
   };
 
