@@ -123,28 +123,6 @@ function RecipesProvider({ children }) {
     getFoodIngredient();
     getDrinkIngredient();
     getNationalities();
-    localStorage.setItem('doneRecipes', JSON.stringify([{
-      id: '0',
-      type: 'food',
-      nationality: 'Japanese',
-      category: 'Seafood',
-      alcoholicOrNot: '',
-      name: 'Spicy Arrabiata Penne',
-      image: 'https://www.sabornamesa.com.br/media/k2/items/cache/5031e263a4a258791d6306b2d3d9dbf6_XL.jpg',
-      doneDate: '12/03/2022',
-      tags: ['karate', 'kung-fu'],
-    },
-    {
-      id: '1',
-      type: 'drink',
-      nationality: '',
-      category: '',
-      alcoholicOrNot: 'Alcoholic',
-      name: 'Aquamarine',
-      image: 'https://feedmechannel.com/wp-content/uploads/2019/06/receita-de-negroni-1280x1024.jpg',
-      doneDate: '12/03/2022',
-      tags: [],
-    }]));
   }, []);
 
   const store = {
