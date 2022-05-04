@@ -22,7 +22,9 @@ function Details() {
       <HeaderDetails />
       <ListIngredientDetails />
       <ListInstructionsRecomendation />
-      <FooterDetails />
+      <section>
+        <FooterDetails />
+      </section>
     </div>
   );
 }
