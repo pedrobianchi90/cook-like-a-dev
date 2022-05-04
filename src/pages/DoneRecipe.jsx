@@ -52,21 +52,20 @@ function DoneRecipe() {
           && doneRecipes.filter(({ type }) => type.includes(filter))
             .map((recipe, index) => (
               <div key={ recipe.id }>
-                {console.log(recipe)}
                 { recipe.type === 'food'
                   ? (
                     <>
                       <p data-testid={ `${index}-horizontal-top-text` }>
                         {`${recipe.nationality} - ${recipe.category}`}
                       </p>
-                      <Link to={ `/foods/${recipe.id}` }>
+                      <Link to={ `/details/${recipe.id}` }>
                         <img
                           src={ recipe.image }
                           alt="logo-food"
                           data-testid={ `${index}-horizontal-image` }
                         />
                       </Link>
-                      <Link to={ `/foods/${recipe.id}` }>
+                      <Link to={ `/details/${recipe.id}` }>
                         <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
                       </Link>
                       <p data-testid={ `${index}-horizontal-done-date` }>
@@ -87,7 +86,7 @@ function DoneRecipe() {
                       <p data-testid={ `${index}-horizontal-top-text` }>
                         {recipe.alcoholicOrNot}
                       </p>
-                      <Link to={ `/drinks/${recipe.id}` }>
+                      <Link to={ `/details/${recipe.id}` }>
                         <img
                           src={ recipe.image }
                           alt="logo-drink"
