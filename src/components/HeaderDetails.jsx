@@ -14,6 +14,10 @@ function HeaderDetails() {
   const [alert, setAlert] = useState(false);
   const myId = location.pathname.split('/')[2];
   const typeRecipe = location.pathname.split('/')[1].split('s')[0];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6d9a714d4e0a50c01f4b8a6d04abdee2b8d37f24
   const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const isTrue = getStorage.some(({ id }) => id === myId);
 
