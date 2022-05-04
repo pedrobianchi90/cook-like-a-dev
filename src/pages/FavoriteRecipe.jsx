@@ -10,14 +10,19 @@ const copy = require('clipboard-copy');
 function FavoriteRecipe() {
   const [alert, setAlert] = useState(false);
   const [filter, setFilter] = useState('');
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const [favorites, setFavorites] = useState(favoriteRecipes);
 
   const copyToClipboard = (url) => {
     copy(url);
     setAlert(!alert);
   };
 
-  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  console.log(favoriteRecipes);
+  const removeFromPage = (value) => {
+    const filterFavorites = favorites.filter((recipe) => recipe.name !== value);
+    setFavorites(filterFavorites);
+  };
+
   return (
     <div>
       <header>
@@ -51,7 +56,7 @@ function FavoriteRecipe() {
           Drinks
 
         </button>
-        {favoriteRecipes
+        {favorites
           .filter(({ type }) => type.includes(filter)).map((recipe, index) => (
             <div key={ recipe.id }>
               {console.log(recipe)}
@@ -81,7 +86,10 @@ function FavoriteRecipe() {
                       type="button"
                       src={ blackHeartIcon }
                       data-testid={ `${index}-horizontal-favorite-btn` }
-                      onClick={ () => removeRecipe(recipe) }
+                      onClick={ () => {
+                        removeRecipe(recipe);
+                        removeFromPage(recipe.name);
+                      } }
                     >
                       <img src={ blackHeartIcon } alt="logo-share" />
                     </button>
@@ -109,9 +117,14 @@ function FavoriteRecipe() {
                     </button>
                     <button
                       type="button"
+                      // value={ recipe.name }
                       src={ blackHeartIcon }
                       data-testid={ `${index}-horizontal-favorite-btn` }
-                      onClick={ () => removeRecipe(recipe) }
+                      onClick={ () => {
+                        removeRecipe(recipe);
+                        removeFromPage(recipe.name);
+                      } }
+                      // onChange={ () => removeFromPage(recipe.name) }
                     >
                       <img src={ blackHeartIcon } alt="logo-share" />
                     </button>
