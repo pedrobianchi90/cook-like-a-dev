@@ -7,7 +7,7 @@ const copy = require('clipboard-copy');
 
 function DoneRecipe() {
   const [alert, setAlert] = useState(false);
-  const [filter, setFilter] = useState('vazio');
+  const [filter, setFilter] = useState('');
 
   const copyToClipboard = (url) => {
     copy(url);
@@ -52,7 +52,7 @@ function DoneRecipe() {
           && doneRecipes.filter(({ type }) => type.includes(filter))
             .map((recipe, index) => (
               <div key={ recipe.id }>
-                {console.log(recipe.name)}
+                {console.log(recipe)}
                 { recipe.type === 'food'
                   ? (
                     <>
@@ -62,10 +62,12 @@ function DoneRecipe() {
                       <Link to={ `/foods/${recipe.id}` }>
                         <img
                           src={ recipe.image }
-                          alt=""
+                          alt="logo-food"
                           data-testid={ `${index}-horizontal-image` }
                         />
-                        <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+                      </Link>
+                      <Link to={ `/foods/${recipe.id}` }>
+                        <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
                       </Link>
                       <p data-testid={ `${index}-horizontal-done-date` }>
                         {recipe.doneDate}
@@ -88,9 +90,11 @@ function DoneRecipe() {
                       <Link to={ `/drinks/${recipe.id}` }>
                         <img
                           src={ recipe.image }
-                          alt=""
+                          alt="logo-drink"
                           data-testid={ `${index}-horizontal-image` }
                         />
+                      </Link>
+                      <Link to={ `/drinks/${recipe.id}` }>
                         <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
                       </Link>
                       <p data-testid={ `${index}-horizontal-done-date` }>
