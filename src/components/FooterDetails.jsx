@@ -7,9 +7,11 @@ function FooterDetails() {
   const location = useLocation();
   const myId = location.pathname.split('/')[2];
   const { recipe } = useContext(myContext);
+
+  console.log(recipe);
   return (
     <Link
-      to={ recipe[0].strMealThumb ? `/foods/${myId}/in-progress`
+      to={ recipe[0].strMeal ? `/foods/${myId}/in-progress`
         : `/drinks/${myId}/in-progress` }
     >
       <button
@@ -17,7 +19,7 @@ function FooterDetails() {
         type="button"
         className={ style.footer }
       >
-        StarRecipe
+        Start Recipe
       </button>
     </Link>
   );

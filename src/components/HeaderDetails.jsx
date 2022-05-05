@@ -13,17 +13,15 @@ function HeaderDetails() {
   const { recipe } = useContext(myContext);
   const [alert, setAlert] = useState(false);
   const myId = location.pathname.split('/')[2];
-  const typeRecipe = location.pathname.split('/')[1];
-
+  const typeRecipe = location.pathname.split('/')[1].split('s')[0];
   const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const isTrue = getStorage.some(({ id }) => id === myId);
-
   const [isFavorite, setIsFavorite] = useState(isTrue);
 
   const detailRecipe = {
     id: myId,
     type: typeRecipe,
-    nationality: recipe[0].strArea,
+    nationality: recipe[0].strArea ? recipe[0].strArea : '',
     category: recipe[0].strCategory,
     alcoholicOrNot: recipe[0].strAlcoholic
       ? recipe[0].strAlcoholic : '',
@@ -79,6 +77,7 @@ function HeaderDetails() {
       { alert && <span>Link copied!</span> }
       <button
         type="button"
+        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
         data-testid="favorite-btn"
         onClick={ saveFavorite }
       >
