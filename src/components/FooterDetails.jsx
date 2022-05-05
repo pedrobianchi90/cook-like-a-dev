@@ -8,7 +8,6 @@ function FooterDetails() {
   const myId = location.pathname.split('/')[2];
   const { recipe } = useContext(myContext);
 
-  console.log(recipe);
   return (
     <Link
       to={ recipe[0].strMeal ? `/foods/${myId}/in-progress`
