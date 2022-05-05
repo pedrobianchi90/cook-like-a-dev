@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AiOutlineFileDone } from 'react-icons/ai';
 import profileIcon from '../images/profileIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+import '../style/HeaderStyle.css';
 
 const copy = require('clipboard-copy');
 
@@ -17,38 +19,40 @@ function DoneRecipe() {
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
   return (
     <div>
-      <header>
+      <header className="header-container">
         <Link to="/profile">
-          <button type="button">
+          <button type="button" className="icons-header">
             <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
           </button>
         </Link>
         <h2 data-testid="page-title">Done Recipes</h2>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ () => setFilter('') }
-        >
-          All
+        <AiOutlineFileDone className="icons-header" size="48px" />
+      </header>
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+        onClick={ () => setFilter('') }
+      >
+        All
 
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-food-btn"
-          onClick={ () => setFilter('food') }
-        >
-          Food
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-food-btn"
+        onClick={ () => setFilter('food') }
+      >
+        Food
 
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ () => setFilter('drink') }
-        >
-          Drinks
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+        onClick={ () => setFilter('drink') }
+      >
+        Drinks
 
-        </button>
-        {doneRecipes
+      </button>
+      {doneRecipes
         && doneRecipes
           .filter(({ type }) => type.includes(filter)).map((recipe, index) => (
             <div key={ recipe.id }>
@@ -123,7 +127,6 @@ function DoneRecipe() {
                 </div>))}
             </div>
           )) }
-      </header>
     </div>
   );
 }

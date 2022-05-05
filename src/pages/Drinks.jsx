@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import DrinksCategories from '../components/DrinksCategories';
 import ListDrinks from '../components/ListDrinks';
 import myContext from '../context/RecipeContext';
+import '../style/HeaderStyle.css';
 
 function Drinks() {
   const [state, setState] = useState(false);
@@ -17,14 +18,14 @@ function Drinks() {
 
       { drinksData.length === 1
           && <Redirect to={ `/drinks/${drinksData[0].idDrink}` } /> }
-      <header>
+      <header className="header-container">
         <Link to="/profile">
-          <button type="button">
+          <button type="button" className="icons-header">
             <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
           </button>
         </Link>
         <h2 data-testid="page-title">Drinks</h2>
-        <button type="button" onClick={ () => setState(!state) }>
+        <button type="button" onClick={ () => setState(!state) } className="icons-header">
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>

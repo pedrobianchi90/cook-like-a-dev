@@ -5,6 +5,7 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import myContext from '../context/RecipeContext';
 import { fetchAllMealNationalities } from '../services/fetchIngredientsNationalitiesApi';
+import '../style/HeaderStyle.css';
 
 function Nationalites() {
   const { nationalities, meals, setMeals, backup } = useContext(myContext);
@@ -29,14 +30,14 @@ function Nationalites() {
 
   return (
     <div>
-      <header>
+      <header className="header-container">
         <Link to="/profile">
-          <button type="button">
+          <button type="button" className="icons-header">
             <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
           </button>
         </Link>
         <h2 data-testid="page-title">Explore Nationalities</h2>
-        <button type="button">
+        <button type="button" className="icons-header">
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>

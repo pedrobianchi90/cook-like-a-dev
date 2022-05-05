@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import myContext from '../context/RecipeContext';
 import FoodsCategories from '../components/FoodsCategories';
 import ListFoods from '../components/ListFoods';
+import '../style/HeaderStyle.css';
 
 function Foods() {
   const [state, setState] = useState(false);
@@ -17,15 +18,15 @@ function Foods() {
   }
 
   return (
-    <div>
-      <header>
+    <div className="recipes-container">
+      <header className="header-container">
         <Link to="/profile">
-          <button type="button">
+          <button type="button" className="icons-header">
             <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
           </button>
         </Link>
         <h2 data-testid="page-title">Foods</h2>
-        <button type="button" onClick={ () => setState(!state) }>
+        <button type="button" onClick={ () => setState(!state) } className="icons-header">
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../style/LoginStyle.css';
 
 function Login() {
   const history = useHistory();
@@ -33,32 +34,41 @@ function Login() {
   };
 
   return (
-    <form>
-      <input
-        data-testid="email-input"
-        placeholder="Digite seu email"
-        value={ state.email }
-        onChange={ handleChange }
-        name="email"
-      />
-      <input
-        data-testid="password-input"
-        placeholder="Sua senha"
-        type="password"
-        value={ state.password }
-        onChange={ handleChange }
-        name="password"
-      />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ isDisabled }
-        onClick={ buttonClick }
-      >
-        Enter
-      </button>
-
-    </form>
+    <div className="login-container">
+      <form className="form-login">
+        <h2>Cook Like a Dev!</h2>
+        <label htmlFor="email" className="label-login">
+          EMAIL ADDRESS
+          <input
+            data-testid="email-input"
+            value={ state.email }
+            onChange={ handleChange }
+            name="email"
+            className="input-login"
+          />
+        </label>
+        <labe className="label-login">
+          PASSWORD
+          <input
+            data-testid="password-input"
+            type="password"
+            value={ state.password }
+            onChange={ handleChange }
+            name="password"
+            className="input-login"
+          />
+        </labe>
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ isDisabled }
+          onClick={ buttonClick }
+          className="bttn-login"
+        >
+          Enter
+        </button>
+      </form>
+    </div>
   );
 }
 
