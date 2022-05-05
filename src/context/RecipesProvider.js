@@ -24,8 +24,12 @@ import {
 } from '../services/fetchIngredientsNationalitiesApi';
 import { foodById, drinkById } from '../services/fetchRecipeById';
 
+import fetchCocktailById from '../services/fetchCocktailById';
+import fetchMealById from '../services/fetchMealById';
+
 function RecipesProvider({ children }) {
   const [filter, setFilter] = useState({ bool: false, name: 'All' });
+  const [disableButton, setDisableButton] = useState(true);
   const [drinksData, setDrinksData] = useState('');
   const [foodsData, setFoodsData] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -40,6 +44,7 @@ function RecipesProvider({ children }) {
   const [searchInputs, setSearchInputs] = useState('');
   const [mealIngredients, setMealIngredients] = useState([]);
   const [drinksIngredients, setDrinkIngredients] = useState([]);
+  const [inProgress, setInProgress] = useState(null);
   const [ingredientMealName, setIngredientMealName] = useState('');
   const [ingredientDrinkName, setIngredientDrinkName] = useState('');
   const [recipe, setRecipe] = useState(['vazio']);
@@ -106,6 +111,20 @@ function RecipesProvider({ children }) {
     setNationalities([...nationalitiesResponse]);
   }
 
+  async function getInProgress(progressId, typeRecipe) {
+    let progressResponse;
+    if (typeRecipe === 'drink') {
+      progressResponse = await fetchCocktailById(progressId);
+    } else if (typeRecipe === 'food') {
+      progressResponse = await fetchMealById(progressId);
+    }
+    setInProgress(progressResponse);
+  }
+
+  function getDisableButton(bool) {
+    setDisableButton(bool);
+  }
+
   const getRecipe = async (recipes, id) => {
     let myRecipes;
     if (recipes === 'food') myRecipes = await foodById(id);
@@ -150,6 +169,10 @@ function RecipesProvider({ children }) {
     setSearchInputs,
     mealIngredients,
     drinksIngredients,
+    inProgress,
+    getInProgress,
+    disableButton,
+    getDisableButton,
     ingredientMealName,
     setIngredientMealName,
     ingredientDrinkName,
