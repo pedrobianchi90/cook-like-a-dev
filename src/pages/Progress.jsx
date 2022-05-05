@@ -1,33 +1,39 @@
 import React, { useEffect, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import RecipesHeader from '../components/RecipesHeader';
-import DrinkInstruction from '../components/DrinkInstructions';
 import IngredientsDrink from '../components/IngredientsDrink';
 import myContext from '../context/RecipeContext';
+import HeaderDetails from '../components/HeaderDetails';
+import ListInstructionsRecomendation from '../components/ListInstructions';
 
 function Progress() {
   const history = useHistory();
   const location = useLocation();
-  const drinkId = location.pathname.split('/')[2];
+  const progressId = location.pathname.split('/')[2];
+  const typeRecipe = location.pathname.split('/')[1];
   const {
-    getDrinkInProgress,
-    drinkInProgress,
+    getInProgress,
+    inProgress,
     disableButton,
+    getRecipe,
   } = useContext(myContext);
 
   useEffect(() => {
-    getDrinkInProgress(drinkId);
+    getInProgress(progressId, typeRecipe);
   }, []);
+
+  useEffect(() => {
+    getRecipe(typeRecipe, progressId);
+  }, [typeRecipe, progressId]);
 
   return (
     <div>
       {
-        drinkInProgress
+        inProgress
           ? (
             <>
-              <RecipesHeader />
+              <HeaderDetails />
               <IngredientsDrink />
-              <DrinkInstruction />
+              <ListInstructionsRecomendation />
             </>
           )
           : 'Carregando...'

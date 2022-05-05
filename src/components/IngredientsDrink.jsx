@@ -3,17 +3,26 @@ import myContext from '../context/RecipeContext';
 import verifyIngredients from '../services/listIngredients';
 import '../App.css';
 
+import {
+  inicialStorage,
+  readProgressRecipe,
+  updateProgressRecipe,
+} from '../helper/storageProgressRecipes';
+
 function IngredientsDrink() {
   const {
-    drinkInProgress,
+    inProgress,
     getDisableButton,
   } = useContext(myContext);
 
-  const [checked, setChecked] = useState([]);
   const [listIngredients, setListIngredients] = useState([]);
 
+  inicialStorage(inProgress.idDrink);
+
+  const [checked, setChecked] = useState(readProgressRecipe()[inProgress.idDrink]);
+
   useEffect(() => {
-    setListIngredients([...verifyIngredients(drinkInProgress)]);
+    setListIngredients([...verifyIngredients(inProgress)]);
   }, []);
 
   useEffect(() => {
@@ -25,24 +34,28 @@ function IngredientsDrink() {
         getDisableButton(true);
       }
     }
-  }, [checked]);
+  });
 
   const handleChange = ({ target }) => {
     if (target.checked) {
       setChecked([...checked, target.value]);
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {
-          [drinkInProgress.idDrink]: [...checked, target.value],
-        },
-      }));
+      console.log(checked);
+      updateProgressRecipe({
+        [inProgress.idDrink]:
+            [...checked, target.value],
+      });
     } else {
       setChecked(checked.filter((ingred) => ingred !== target.value));
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {
-          [drinkInProgress.idDrink]:
-          checked.filter((ingred) => ingred !== target.value),
-        },
-      }));
+      updateProgressRecipe({
+        [inProgress.idDrink]:
+          checked
+            .filter((ingred) => ingred !== target.value),
+      });
+      console.log({
+        [inProgress.idDrink]:
+          checked
+            .filter((ingred) => ingred !== target.value),
+      });
     }
   };
 
@@ -70,6 +83,7 @@ function IngredientsDrink() {
                   id={ `ingredient-${index}` }
                   name={ `ingredient-${index}` }
                   type="checkbox"
+                  checked={ isChecked(ingredient.ingredient) === 'checked' }
                   value={ ingredient.ingredient }
                   onChange={ handleChange }
                 />

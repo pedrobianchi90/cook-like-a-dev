@@ -22,8 +22,10 @@ import {
   fetchDrinksIngredients,
   fetchMealNationalities,
 } from '../services/fetchIngredientsNationalitiesApi';
+import { foodById, drinkById } from '../services/fetchRecipeById';
 
 import fetchCocktailById from '../services/fetchCocktailById';
+import fetchMealById from '../services/fetchMealById';
 
 function RecipesProvider({ children }) {
   const [filter, setFilter] = useState({ bool: false, name: 'All' });
@@ -42,9 +44,10 @@ function RecipesProvider({ children }) {
   const [searchInputs, setSearchInputs] = useState('');
   const [mealIngredients, setMealIngredients] = useState([]);
   const [drinksIngredients, setDrinkIngredients] = useState([]);
-  const [drinkInProgress, setDrinkInProgress] = useState(null);
+  const [inProgress, setInProgress] = useState(null);
   const [ingredientMealName, setIngredientMealName] = useState('');
   const [ingredientDrinkName, setIngredientDrinkName] = useState('');
+  const [recipe, setRecipe] = useState(['vazio']);
 
   const [nationalities, setNationalities] = useState([]);
 
@@ -108,14 +111,26 @@ function RecipesProvider({ children }) {
     setNationalities([...nationalitiesResponse]);
   }
 
-  async function getDrinkInProgress(idDrink) {
-    const drinkInProgressResponse = await fetchCocktailById(idDrink);
-    setDrinkInProgress(drinkInProgressResponse);
+  async function getInProgress(progressId, typeRecipe) {
+    let progressResponse;
+    if (typeRecipe === 'drinks') {
+      progressResponse = await fetchCocktailById(progressId);
+    } else if (typeRecipe === 'foods') {
+      progressResponse = await fetchMealById(progressId);
+    }
+    setInProgress(progressResponse);
   }
 
   function getDisableButton(bool) {
     setDisableButton(bool);
   }
+
+  const getRecipe = async (recipes, id) => {
+    let myRecipes;
+    if (recipes === 'foods') myRecipes = await foodById(id);
+    if (recipes === 'drinks') myRecipes = await drinkById(id);
+    setRecipe(myRecipes);
+  };
 
   useEffect(() => {
     getDrinks();
@@ -154,8 +169,8 @@ function RecipesProvider({ children }) {
     setSearchInputs,
     mealIngredients,
     drinksIngredients,
-    drinkInProgress,
-    getDrinkInProgress,
+    inProgress,
+    getInProgress,
     disableButton,
     getDisableButton,
     ingredientMealName,
@@ -164,6 +179,9 @@ function RecipesProvider({ children }) {
     setIngredientDrinkName,
     nationalities,
     setNationalities,
+    recipe,
+    setRecipe,
+    getRecipe,
   };
 
   return (
