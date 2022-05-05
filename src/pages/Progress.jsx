@@ -9,7 +9,7 @@ function Progress() {
   const history = useHistory();
   const location = useLocation();
   const progressId = location.pathname.split('/')[2];
-  const typeRecipe = location.pathname.split('/')[1];
+  const typeRecipe = location.pathname.split('/')[1].split('s')[0];
   const {
     getInProgress,
     inProgress,

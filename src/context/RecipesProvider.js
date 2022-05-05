@@ -113,9 +113,9 @@ function RecipesProvider({ children }) {
 
   async function getInProgress(progressId, typeRecipe) {
     let progressResponse;
-    if (typeRecipe === 'drinks') {
+    if (typeRecipe === 'drink') {
       progressResponse = await fetchCocktailById(progressId);
-    } else if (typeRecipe === 'foods') {
+    } else if (typeRecipe === 'food') {
       progressResponse = await fetchMealById(progressId);
     }
     setInProgress(progressResponse);
