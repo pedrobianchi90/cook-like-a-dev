@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  height: 640px;
+  height: 647px;
   justify-content: center;
   width: 100%;
 }
@@ -44,7 +44,7 @@ h2 {
   margin-bottom: 20px;
   outline: none;
   padding: 5px;
-  -webkit-transition: 1s; /* Safari */
+  -webkit-transition: 1s;
   transition: 1s;
 }
 

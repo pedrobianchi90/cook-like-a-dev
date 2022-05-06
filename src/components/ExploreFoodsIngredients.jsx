@@ -10,7 +10,6 @@ function ExploreFoodsIngredients() {
 
   return (
     <div>
-      <h2 data-testid="page-title">Explore Ingredients</h2>
       { mealIngredients.length > 0
         ? mealIngredients.map((ingredient, index) => (
           <button

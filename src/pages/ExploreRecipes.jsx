@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { GiHotMeal } from 'react-icons/gi';
+import { BiDrink } from 'react-icons/bi';
 import Footer from '../components/Footer';
 import profileIcon from '../images/profileIcon.svg';
 import RecipeContext from '../context/RecipeContext';
+import '../style/HeaderStyle.css';
 
 function ExploreRecipes() {
   const location = useLocation();
@@ -13,17 +16,22 @@ function ExploreRecipes() {
 
   return (
     <div>
-      <header>
-        <Link to="/profile">
-          <button type="button">
-            <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
-          </button>
-        </Link>
-      </header>
       {location.pathname === '/explore/foods'
         ? (
           <>
-            <h2 data-testid="page-title">Explore Foods</h2>
+            <header className="header-container">
+              <Link to="/profile">
+                <button type="button" className="icons-header">
+                  <img
+                    src={ profileIcon }
+                    alt="logo-profile"
+                    data-testid="profile-top-btn"
+                  />
+                </button>
+              </Link>
+              <h2 data-testid="page-title">Explore Foods</h2>
+              <GiHotMeal className="icons-header" size="48px" />
+            </header>
             <Link to="/explore/foods/ingredients">
               <button type="button" data-testid="explore-by-ingredient">
                 By Ingredient
@@ -45,7 +53,19 @@ function ExploreRecipes() {
           </>)
         : (
           <>
-            <h2 data-testid="page-title">Explore Drinks</h2>
+            <header className="header-container">
+              <Link to="/profile">
+                <button type="button" className="icons-header">
+                  <img
+                    src={ profileIcon }
+                    alt="logo-profile"
+                    data-testid="profile-top-btn"
+                  />
+                </button>
+              </Link>
+              <h2 data-testid="page-title">Explore Drinks</h2>
+              <BiDrink className="icons-header" size="48px" />
+            </header>
             <Link to="/explore/drinks/ingredients">
               <button type="button" data-testid="explore-by-ingredient">
                 By Ingredient

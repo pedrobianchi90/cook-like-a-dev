@@ -9,7 +9,6 @@ function ExploreDinksIngredients() {
   } = useContext(myContext);
   return (
     <div>
-      <h2 data-testid="page-title">Explore Ingredients</h2>
       { drinksIngredients.length > 0
         ? drinksIngredients.map((ingredient, index) => (
           <button

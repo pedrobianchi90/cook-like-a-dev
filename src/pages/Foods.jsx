@@ -55,8 +55,9 @@ function Foods() {
             ))}
           </div>) : ('')}
       <ListFoods />
-
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import {
   fetchDrinksName,
   fetchDrinksFirstLetter,
 } from '../helper/fetchDinks';
+import '../style/SearchStyle.css';
 
 function SearchBar() {
   const {
@@ -69,66 +70,70 @@ function SearchBar() {
 
   return (
     <section>
+      <div className="search-container">
+        <div className="input-bttn">
+          <label htmlFor="searchInput">
+            <input
+              className="input-search"
+              type="text"
+              id="searchInput"
+              placeholder="Find your recipe here!"
+              data-testid="search-input"
+              value={ searchInputs }
+              onChange={ ({ target }) => {
+                setSearchInputs(target.value);
+              } }
+            />
+          </label>
+          <button
+            className="bttn-search"
+            type="button"
+            data-testid="exec-search-btn"
+            onClick={ handleClick }
+          >
+            Search
+          </button>
+        </div>
+        <div className="inputs-container">
+          <label htmlFor="ingredients" className="label-input">
+            Ingredients
+            <input
+              className="input-filter"
+              type="radio"
+              id="ingredients-search"
+              data-testid="ingredient-search-radio"
+              name="filter"
+              value="inputIngredients"
+              onChange={ () => { setFilterBtn('inputIngredients'); } }
+            />
+          </label>
 
-      <div>
-        <label htmlFor="searchInput">
-          Search Recipe:
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search"
-            data-testid="search-input"
-            value={ searchInputs }
-            onChange={ ({ target }) => {
-              setSearchInputs(target.value);
-            } }
-          />
-        </label>
-
-        <label htmlFor="ingredients">
-          Ingredients
-          <input
-            type="radio"
-            id="ingredients-search"
-            data-testid="ingredient-search-radio"
-            name="filter"
-            value="inputIngredients"
-            onChange={ () => { setFilterBtn('inputIngredients'); } }
-          />
-        </label>
-
-        <label htmlFor="name">
-          Name
-          <input
-            type="radio"
-            name="filter"
-            id="name-search"
-            value="inputName"
-            data-testid="name-search-radio"
-            onChange={ () => { setFilterBtn('inputName'); } }
-          />
-        </label>
-
-        <label htmlFor="letter">
-          First Letter
-          <input
-            type="radio"
-            name="filter"
-            value="inputLetter"
-            data-testid="first-letter-search-radio"
-            id="letter-search"
-            onChange={ () => { setFilterBtn('inputLetter'); } }
-          />
-        </label>
+          <label htmlFor="name" className="label-input">
+            Name
+            <input
+              className="input-filter"
+              type="radio"
+              name="filter"
+              id="name-search"
+              value="inputName"
+              data-testid="name-search-radio"
+              onChange={ () => { setFilterBtn('inputName'); } }
+            />
+          </label>
+          <label htmlFor="letter" className="label-input">
+            First Letter
+            <input
+              className="input-filter"
+              type="radio"
+              name="filter"
+              value="inputLetter"
+              data-testid="first-letter-search-radio"
+              id="letter-search"
+              onChange={ () => { setFilterBtn('inputLetter'); } }
+            />
+          </label>
+        </div>
       </div>
-
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ handleClick }
-      >
-        Search
-      </button>
 
     </section>
   );
