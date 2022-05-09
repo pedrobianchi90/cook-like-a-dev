@@ -20,6 +20,7 @@ function IngredientsDrink() {
 
   inicialStorage(inProgress);
 
+  // objeto para identificar o tipo da receita
   const objRecipe = verifyRecipe(inProgress);
 
   const [checked, setChecked] = useState(
