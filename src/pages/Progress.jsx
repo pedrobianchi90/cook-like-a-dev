@@ -5,6 +5,7 @@ import myContext from '../context/RecipeContext';
 import HeaderDetails from '../components/HeaderDetails';
 import ListInstructionsRecomendation from '../components/ListInstructions';
 import '../style/DetailsStyle.css';
+import '../style/ProgressStyle.css';
 
 function Progress() {
   const history = useHistory();
@@ -17,6 +18,7 @@ function Progress() {
     disableButton,
     getRecipe,
   } = useContext(myContext);
+  console.log(inProgress);
 
   useEffect(() => {
     getInProgress(progressId, typeRecipe);
@@ -45,6 +47,7 @@ function Progress() {
         data-testid="finish-recipe-btn"
         disabled={ disableButton }
         onClick={ () => history.push('/done-recipes') }
+        className="footer-progress"
       >
         Finish Recipe
       </button>

@@ -1,0 +1,69 @@
+/* stylelint-disable value-list-comma-space-after */
+
+/* stylelint-disable property-no-vendor-prefix */
+.select-container {
+  display: flex;
+  justify-content: center;
+}
+
+.select-input {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.list-container-nationalities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.card-container-nationalities {
+  border-radius: 20px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 1px 0 inset ,
+    rgba(50, 50, 93, 0.25) 0 50px 100px -20px , rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.card-container-nationalities:hover {
+  transform: scale(1.1);
+}
+
+.list-picture-nationalities {
+  background-color: var(--accenty-color);
+  border: 1px solid #d4d3e8;
+  border-radius: 20px;
+  color: var(--secondary-olor);
+  cursor: pointer;
+  display: flex;
+  margin: 5px;
+  margin-top: 10%;
+  padding: 5px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 150px;
+}
+
+.list-picture-nationalities:hover {
+  box-shadow: 0 0 5pt 0.5pt var(--accenty-color);
+}
+
+.list-picture-nationalities:focus {
+  box-shadow: 0 0 5pt 2pt var(--accenty-color);
+  outline-width: 0;
+}
+
+.list-name-nationalities {
+  display: inline-block;
+  font-weight: 700;
+  margin-left: 10px;
+  max-width: 15ch;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -19,6 +19,26 @@
   transform: scale(1.1);
 }
 
+.bttn-container-explore-drinks {
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 1px 0 inset ,
+    rgba(50, 50, 93, 0.25) 0 50px 100px -20px , rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: center;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 12%;
+  transition: all 0.5s ease-in-out;
+  width: 60%;
+}
+
+.bttn-container-explore-drinks:hover {
+  transform: scale(1.1);
+}
+
 .link {
   color: var(--secondary-olor);
   text-decoration: none;

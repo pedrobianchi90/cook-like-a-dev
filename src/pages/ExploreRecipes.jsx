@@ -81,7 +81,7 @@ function ExploreRecipes() {
               <h2 data-testid="page-title">Explore Drinks</h2>
               <BiDrink className="icons-header" size="48px" />
             </header>
-            <div className="bttn-container">
+            <div className="bttn-container-explore-drinks">
               <Link to="/explore/drinks/ingredients" className="link">
                 <button
                   type="button"

@@ -3,7 +3,6 @@ import myContext from '../context/RecipeContext';
 
 function ListInstructionsRecomendation() {
   const { recipe } = useContext(myContext);
-  console.log(recipe);
   return (
     <div className="list-details-container">
       <h4 className="list-details-ingredient">Instructions</h4>

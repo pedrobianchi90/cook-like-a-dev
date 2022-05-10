@@ -4,6 +4,7 @@ import { AiOutlineFileDone } from 'react-icons/ai';
 import profileIcon from '../images/profileIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import '../style/HeaderStyle.css';
+import '../style/CategoriesStyle.css';
 
 const copy = require('clipboard-copy');
 
@@ -28,30 +29,32 @@ function DoneRecipe() {
         <h2 data-testid="page-title">Done Recipes</h2>
         <AiOutlineFileDone className="icons-header" size="48px" />
       </header>
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => setFilter('') }
-      >
-        All
-
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => setFilter('food') }
-      >
-        Food
-
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => setFilter('drink') }
-      >
-        Drinks
-
-      </button>
+      <div className="categorie-cantainer">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => setFilter('') }
+          className="bttn-categories"
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => setFilter('food') }
+          className="bttn-categories"
+        >
+          Food
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => setFilter('drink') }
+          className="bttn-categories"
+        >
+          Drinks
+        </button>
+      </div>
       {doneRecipes
         && doneRecipes
           .filter(({ type }) => type.includes(filter)).map((recipe, index) => (

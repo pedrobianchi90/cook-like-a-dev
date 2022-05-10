@@ -6,7 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import myContext from '../context/RecipeContext';
 import { fetchAllMealNationalities } from '../services/fetchIngredientsNationalitiesApi';
 import '../style/HeaderStyle.css';
-import '../style/FavoriteStyle.css';
+import '../style/NationalitiesStyle.css';
 
 function Nationalites() {
   const { nationalities, meals, setMeals, backup } = useContext(myContext);
@@ -46,38 +46,44 @@ function Nationalites() {
         { nationalities.length && meals.length > 0
           ? (
             <div>
-              <label htmlFor="nationalities-filter">
-                <select
-                  data-testid="explore-by-nationality-dropdown"
-                  onChange={ handleChange }
-                >
-                  {myArrayNationatilies.map((option, index) => (
-                    <option
-                      key={ index }
-                      value={ option.strArea }
-                      data-testid={ `${option.strArea}-option` }
-                    >
-                      { option.strArea }
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <div>
+              <div className="select-container">
+                <label htmlFor="nationalities-filter">
+                  <select
+                    data-testid="explore-by-nationality-dropdown"
+                    onChange={ handleChange }
+                    className="select-input"
+                  >
+                    {myArrayNationatilies.map((option, index) => (
+                      <option
+                        key={ index }
+                        value={ option.strArea }
+                        data-testid={ `${option.strArea}-option` }
+                      >
+                        { option.strArea }
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div className="list-container-nationalities">
                 {meals.map((meal, index) => (
                   <div
                     key={ index }
                     data-testid={ `${index}-recipe-card` }
                     onClick={ () => redirectToDetails(meal.idMeal) }
                     aria-hidden="true"
+                    className="card-container-nationalities"
                   >
                     <img
                       src={ meal.strMealThumb }
                       alt={ meal.strMeal }
                       data-testid={ `${index}-card-img` }
+                      className="list-picture-nationalities"
                     />
                     <div>
                       <span
                         data-testid={ `${index}-card-name` }
+                        className="list-name-nationalities"
                       >
                         { meal.strMeal }
                       </span>

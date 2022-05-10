@@ -83,7 +83,7 @@ function IngredientsDrink() {
               <div className="input-progress" key={ ingredient.ingredient }>
                 <label
                   key={ ingredient.ingredient }
-                  htmlFor="ingredients"
+                  htmlFor={ `ingredient-${index}` }
                   data-testid={ `${index}-ingredient-step` }
                   className={ isChecked(ingredient.ingredient) }
                 >
