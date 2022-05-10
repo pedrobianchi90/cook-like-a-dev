@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import myContext from '../context/RecipeContext';
+import '../style/CategoriesStyle.css';
 
 const LOADING = 'Carregando...';
 
@@ -22,8 +23,9 @@ function DrinksCategories() {
   };
 
   return (
-    <div>
+    <div className="categorie-cantainer">
       <button
+        className="bttn-categories"
         type="button"
         name="All"
         data-testid="All-category-filter"
@@ -36,6 +38,7 @@ function DrinksCategories() {
       { drinksCategories
         ? drinksCategories.map((category) => (
           <button
+            className="bttn-categories"
             key={ category.strCategory }
             type="button"
             name={ category.strCategory }

@@ -5,6 +5,7 @@ import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { addRecipe, removeRecipe } from '../helper/storageFavoriteRecipes';
+import '../style/DetailsStyle.css';
 
 const copy = require('clipboard-copy');
 
@@ -45,48 +46,59 @@ function HeaderDetails() {
   };
 
   return (
-    <>
+    <div className="details-container">
       <img
         src={ recipe[0].strDrinkThumb ? recipe[0].strDrinkThumb
           : recipe[0].strMealThumb }
         alt={ recipe.strDrink ? recipe[0].strDrink
           : recipe[0].strMeal }
         data-testid="recipe-photo"
+        className="details-img"
       />
-      <h2 data-testid="recipe-title">
+      <h2 data-testid="recipe-title" className="details-title">
         {recipe[0].strDrink ? recipe[0].strDrink
           : recipe[0].strMeal}
 
       </h2>
       { recipe[0].strDrinkThumb
         ? (
-          <p data-testid="recipe-category">
-            {`${recipe[0].strAlcoholic} ${recipe[0].strCategory}`}
+          <p data-testid="recipe-category" className="details-category">
+            {`${recipe[0].strAlcoholic} - ${recipe[0].strCategory}`}
           </p>)
-        : <p data-testid="recipe-category">{recipe[0].strCategory}</p>}
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ () => copyToClipboard(`http://localhost:3000${location.pathname}`) }
-      >
-        <img
-          src={ shareIcon }
-          alt="Link de compartilhar"
-        />
-      </button>
-      { alert && <span>Link copied!</span> }
-      <button
-        type="button"
-        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-        data-testid="favorite-btn"
-        onClick={ saveFavorite }
-      >
-        <img
+        : (
+          <p
+            data-testid="recipe-category"
+            className="details-category"
+          >
+            {` Category - ${recipe[0].strCategory}`}
+          </p>)}
+      <div className="bttn-container-details">
+        { alert && <span className="details-link">Link copied!</span> }
+        <button
+          type="button"
+          className="details-bttn"
+          data-testid="share-btn"
+          onClick={ () => copyToClipboard(`http://localhost:3000${location.pathname}`) }
+        >
+          <img
+            src={ shareIcon }
+            alt="Link de compartilhar"
+          />
+        </button>
+        <button
+          type="button"
+          className="details-bttn"
           src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-          alt="botão de Favoritar"
-        />
-      </button>
-    </>
+          data-testid="favorite-btn"
+          onClick={ saveFavorite }
+        >
+          <img
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt="botão de Favoritar"
+          />
+        </button>
+      </div>
+    </div>
   );
 }
 

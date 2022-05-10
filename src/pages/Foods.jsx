@@ -8,6 +8,7 @@ import myContext from '../context/RecipeContext';
 import FoodsCategories from '../components/FoodsCategories';
 import ListFoods from '../components/ListFoods';
 import '../style/HeaderStyle.css';
+import '../style/List.css';
 
 function Foods() {
   const [state, setState] = useState(false);
@@ -37,19 +38,27 @@ function Foods() {
 
       { foodsData.length > 0
         ? (
-          <div>
+          <div className="list-container">
             {foodsData.map((recipe, index) => (
               <div
                 key={ recipe.idMeal }
                 data-testid={ `${index}-recipe-card` }
               >
                 <Link to={ `/foods/${recipe.idMeal}` }>
-                  <img
-                    src={ recipe.strMealThumb }
-                    alt="strMealThumb"
-                    data-testid={ `${index}-card-img` }
-                  />
-                  <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
+                  <div className="card-container">
+                    <img
+                      src={ recipe.strMealThumb }
+                      alt="strMealThumb"
+                      data-testid={ `${index}-card-img` }
+                      className="list-picture"
+                    />
+                    <h2
+                      data-testid={ `${index}-card-name` }
+                      className="list-name-filter"
+                    >
+                      {recipe.strMeal}
+                    </h2>
+                  </div>
                 </Link>
               </div>
             ))}

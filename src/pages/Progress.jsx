@@ -4,6 +4,7 @@ import IngredientsDrink from '../components/IngredientsDrink';
 import myContext from '../context/RecipeContext';
 import HeaderDetails from '../components/HeaderDetails';
 import ListInstructionsRecomendation from '../components/ListInstructions';
+import '../style/DetailsStyle.css';
 
 function Progress() {
   const history = useHistory();

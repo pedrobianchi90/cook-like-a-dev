@@ -9,18 +9,21 @@ function FooterDetails() {
   const { recipe } = useContext(myContext);
 
   return (
-    <Link
-      to={ recipe[0].strMeal ? `/foods/${myId}/in-progress`
-        : `/drinks/${myId}/in-progress` }
-    >
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        className={ style.footer }
+    <div>
+      <Link
+        to={ recipe[0].strMeal ? `/foods/${myId}/in-progress`
+          : `/drinks/${myId}/in-progress` }
+        className="footer-details"
       >
-        Start Recipe
-      </button>
-    </Link>
+        <button
+          data-testid="start-recipe-btn"
+          type="button"
+          className={ style.footer }
+        >
+          Start Recipe
+        </button>
+      </Link>
+    </div>
   );
 }
 

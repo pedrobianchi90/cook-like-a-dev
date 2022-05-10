@@ -4,14 +4,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap') ;
 
-.login-container {
+.login-background {
   background-image: url('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=pexels-ella-olsson-1640777.jpg&fm=jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
+  margin: 0;
+}
+
+
+.login-container {
   display: flex;
   height: 647px;
   justify-content: center;
+  margin-bottom: 0;
   width: 100%;
 }
 

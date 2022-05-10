@@ -95,7 +95,7 @@ function SearchBar() {
           </button>
         </div>
         <div className="inputs-container">
-          <label htmlFor="ingredients" className="label-input">
+          <label htmlFor="ingredients-search" className="label-input">
             Ingredients
             <input
               className="input-filter"
@@ -108,7 +108,7 @@ function SearchBar() {
             />
           </label>
 
-          <label htmlFor="name" className="label-input">
+          <label htmlFor="name-search" className="label-input">
             Name
             <input
               className="input-filter"
@@ -120,7 +120,7 @@ function SearchBar() {
               onChange={ () => { setFilterBtn('inputName'); } }
             />
           </label>
-          <label htmlFor="letter" className="label-input">
+          <label htmlFor="letter-search" className="label-input">
             First Letter
             <input
               className="input-filter"

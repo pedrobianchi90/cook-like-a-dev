@@ -6,6 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import myContext from '../context/RecipeContext';
 import { fetchAllMealNationalities } from '../services/fetchIngredientsNationalitiesApi';
 import '../style/HeaderStyle.css';
+import '../style/FavoriteStyle.css';
 
 function Nationalites() {
   const { nationalities, meals, setMeals, backup } = useContext(myContext);
@@ -75,7 +76,11 @@ function Nationalites() {
                       data-testid={ `${index}-card-img` }
                     />
                     <div>
-                      <span data-testid={ `${index}-card-name` }>{ meal.strMeal }</span>
+                      <span
+                        data-testid={ `${index}-card-name` }
+                      >
+                        { meal.strMeal }
+                      </span>
                     </div>
                   </div>
                 ))}
