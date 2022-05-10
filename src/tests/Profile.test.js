@@ -2,7 +2,6 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './RenderWithRouter';
-import Explore from '../pages/Explore';
 import Profile from '../pages/Profile';
 
 const testIdEmail = 'profile-email';
@@ -37,7 +36,7 @@ describe('Testa página Profile', () => {
   });
 
   it('84 - Testa se há 3 botões', () => {
-    renderWithRouter(<Explore />);
+    renderWithRouter(<Profile />);
     getExplore();
   });
 
