@@ -8,6 +8,7 @@ import {
   inicialStorage,
   readProgressRecipe,
   updateProgressRecipe,
+  verifyRecipe,
 } from '../helper/storageProgressRecipes';
 
 function IngredientsDrink() {
@@ -18,9 +19,14 @@ function IngredientsDrink() {
 
   const [listIngredients, setListIngredients] = useState([]);
 
-  inicialStorage(inProgress.idDrink);
+  inicialStorage(inProgress);
 
-  const [checked, setChecked] = useState(readProgressRecipe()[inProgress.idDrink]);
+  // objeto para identificar o tipo da receita
+  const objRecipe = verifyRecipe(inProgress);
+
+  const [checked, setChecked] = useState(
+    readProgressRecipe()[objRecipe.type][objRecipe.recipeId],
+  );
 
   useEffect(() => {
     setListIngredients([...verifyIngredients(inProgress)]);
@@ -40,22 +46,20 @@ function IngredientsDrink() {
   const handleChange = ({ target }) => {
     if (target.checked) {
       setChecked([...checked, target.value]);
-      console.log(checked);
       updateProgressRecipe({
-        [inProgress.idDrink]:
-            [...checked, target.value],
+        [objRecipe.type]: {
+          [objRecipe.recipeId]:
+              [...checked, target.value],
+        },
       });
     } else {
       setChecked(checked.filter((ingred) => ingred !== target.value));
       updateProgressRecipe({
-        [inProgress.idDrink]:
-          checked
-            .filter((ingred) => ingred !== target.value),
-      });
-      console.log({
-        [inProgress.idDrink]:
-          checked
-            .filter((ingred) => ingred !== target.value),
+        [objRecipe.type]: {
+          [objRecipe.recipeId]:
+            checked
+              .filter((ingred) => ingred !== target.value),
+        },
       });
     }
   };

@@ -45,6 +45,9 @@ function HeaderDetails() {
     }
   };
 
+  const wrapLocation = location.pathname.split('/');
+  const locationExact = `/${wrapLocation[1]}/${wrapLocation[2]}`;
+
   return (
     <div className="details-container">
       <img
@@ -78,7 +81,7 @@ function HeaderDetails() {
           type="button"
           className="details-bttn"
           data-testid="share-btn"
-          onClick={ () => copyToClipboard(`http://localhost:3000${location.pathname}`) }
+          onClick={ () => copyToClipboard(`http://localhost:3000${locationExact}`) }
         >
           <img
             src={ shareIcon }
