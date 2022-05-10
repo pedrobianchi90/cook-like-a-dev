@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import myContext from '../context/RecipeContext';
+import '../style/List.css';
 
 const LOADING = 'Carregando...';
 
@@ -17,7 +18,7 @@ function ListDrinks() {
   };
 
   return (
-    <div>
+    <div className="list-container">
       { filterDrinkCategory || drinks
         ? (filter.bool ? filterDrinkCategory : drinks)
           .map((drink, index) => (
@@ -27,13 +28,21 @@ function ListDrinks() {
               onClick={ () => redirectToDetails(drink.idDrink) }
               aria-hidden="true"
             >
-              <img
-                src={ drink.strDrinkThumb }
-                alt={ drink.strDrink }
-                data-testid={ `${index}-card-img` }
-              />
-              <div>
-                <span data-testid={ `${index}-card-name` }>{ drink.strDrink }</span>
+              <div className="card-container">
+                <img
+                  src={ drink.strDrinkThumb }
+                  alt={ drink.strDrink }
+                  data-testid={ `${index}-card-img` }
+                  className="list-picture"
+                />
+                <div>
+                  <span
+                    data-testid={ `${index}-card-name` }
+                    className="list-name"
+                  >
+                    { drink.strDrink }
+                  </span>
+                </div>
               </div>
             </div>
           ))

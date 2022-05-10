@@ -1,0 +1,31 @@
+.footer-container {
+  bottom: 20px;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+}
+
+.icons-footer {
+  align-self: center;
+  background-color: var(--accenty-color);
+  border: 1px solid #d4d3e8;
+  border-radius: 26px;
+  box-shadow: 0 2px 2px var(--bege);
+  color: var(--secondary-olor);
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 10px;
+  padding: 8px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.icons-footer:hover {
+  border-color: var(--bege);
+  outline: none;
+}

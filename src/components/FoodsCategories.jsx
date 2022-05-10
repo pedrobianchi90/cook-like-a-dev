@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import myContext from '../context/RecipeContext';
+import '../style/CategoriesStyle.css';
 
 const LOADING = 'Carregando...';
 
@@ -22,11 +23,12 @@ function FoodsCategories() {
   };
 
   return (
-    <div>
+    <div className="categorie-cantainer">
       <button
         type="button"
         data-testid="All-category-filter"
         onClick={ () => getFilter({ bool: false, name: 'All' }) }
+        className="bttn-categories"
       >
         All
       </button>
@@ -38,6 +40,7 @@ function FoodsCategories() {
             type="button"
             data-testid={ `${category.strCategory}-category-filter` }
             onClick={ handleClick }
+            className="bttn-categories"
           >
             {category.strCategory}
           </button>

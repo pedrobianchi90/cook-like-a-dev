@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import myContext from '../context/RecipeContext';
 import verifyIngredients from '../services/listIngredients';
 import '../App.css';
+import '../style/DetailsStyle.css';
 
 import {
   inicialStorage,
@@ -72,29 +73,34 @@ function IngredientsDrink() {
 
   return (
     <div>
-      <h3>Ingredients</h3>
+      <div className="list-details-ingredient-title">
+        <h4 className="list-details-ingredient-progress">Ingredients</h4>
+      </div>
       {
         listIngredients.length > 0
           ? (
             listIngredients.map((ingredient, index) => (
-              <label
-                key={ ingredient.ingredient }
-                htmlFor="ingredients"
-                data-testid={ `${index}-ingredient-step` }
-                className={ isChecked(ingredient.ingredient) }
-              >
-                <input
-                  id={ `ingredient-${index}` }
-                  name={ `ingredient-${index}` }
-                  type="checkbox"
-                  checked={ isChecked(ingredient.ingredient) === 'checked' }
-                  value={ ingredient.ingredient }
-                  onChange={ handleChange }
-                />
-                { ingredient.ingredient }
-                { ingredient.measure ? ` - ${ingredient.measure}` : '' }
+              <div className="input-progress" key={ ingredient.ingredient }>
+                <label
+                  key={ ingredient.ingredient }
+                  htmlFor={ `ingredient-${index}` }
+                  data-testid={ `${index}-ingredient-step` }
+                  className={ isChecked(ingredient.ingredient) }
+                >
+                  <input
+                    id={ `ingredient-${index}` }
+                    name={ `ingredient-${index}` }
+                    type="checkbox"
+                    checked={ isChecked(ingredient.ingredient) === 'checked' }
+                    value={ ingredient.ingredient }
+                    onChange={ handleChange }
+                    className="input-progress-checkbox"
+                  />
+                  { ingredient.ingredient }
+                  { ingredient.measure ? ` - ${ingredient.measure}` : '' }
 
-              </label>
+                </label>
+              </div>
             ))
           )
           : 'Carregando...'

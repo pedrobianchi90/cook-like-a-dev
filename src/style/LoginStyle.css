@@ -1,0 +1,89 @@
+/* stylelint-disable property-no-vendor-prefix */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap') ;
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap') ;
+
+.login-background {
+  background-image: url('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=pexels-ella-olsson-1640777.jpg&fm=jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin: 0;
+}
+
+
+.login-container {
+  display: flex;
+  height: 647px;
+  justify-content: center;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.form-login {
+  align-self: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 5pt 0.5pt var(--accenty-color);
+  display: flex;
+  flex-direction: column;
+  padding: 60px 40px;
+}
+
+h2 {
+  font-family: Caveat , cursive;
+  font-size: 40px;
+  text-align: center;
+}
+
+.label-login {
+  color: var(--secondary-color);
+  font-size: 12px;
+  line-height: 28px;
+}
+
+.input-login {
+  border: solid 1.5px lightgray;
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 5px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.input-login:hover {
+  box-shadow: 0 0 5pt 0.5pt var(--accenty-color);
+}
+
+.input-login:focus {
+  box-shadow: 0 0 5pt 2pt var(--accenty-color);
+  outline-width: 0;
+}
+
+.bttn-login {
+  align-self: center;
+  background-color: var(--accenty-color);
+  border: 1px solid #d4d3e8;
+  border-radius: 26px;
+  box-shadow: 0 2px 2px var(--bege);
+  color: var(--secondary-olor);
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  justify-content: center;
+  padding: 5px;
+  text-align: center;
+  transition: 0.2s;
+  width: 50%;
+}
+
+.bttn-login:hover {
+  border-color: var(--bege);
+  outline: none;
+}
+

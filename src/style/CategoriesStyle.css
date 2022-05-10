@@ -1,0 +1,30 @@
+/* stylelint-disable property-no-vendor-prefix */
+.categorie-cantainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bttn-categories {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  font-size: 16px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 5px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.bttn-categories:hover {
+  border-radius: 10px;
+  box-shadow: 0 0 5pt 0.5pt var(--accenty-color);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.bttn-categories:focus {
+  box-shadow: 0 0 5pt 2pt var(--accenty-color);
+  outline-width: 0;
+}
+

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import { BiFoodMenu } from 'react-icons/bi';
 import Footer from '../components/Footer';
 import profileIcon from '../images/profileIcon.svg';
 import RecipeContext from '../context/RecipeContext';
@@ -11,6 +12,7 @@ import {
 import {
   fetchDrinksIngredients,
 } from '../helper/fetchDinks';
+import '../style/HeaderStyle.css';
 
 function ExploreIngredient() {
   const location = useLocation();
@@ -55,19 +57,42 @@ function ExploreIngredient() {
 
   return (
     <div>
-      <header>
-        <Link to="/profile">
-          <button type="button">
-            <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
-          </button>
-        </Link>
-      </header>
       {location.pathname === '/explore/foods/ingredients'
         ? (
-          <ExploreFoodsIngredients />
+          <div>
+            <header className="header-container">
+              <Link to="/profile">
+                <button type="button" className="icons-header">
+                  <img
+                    src={ profileIcon }
+                    alt="logo-profile"
+                    data-testid="profile-top-btn"
+                  />
+                </button>
+              </Link>
+              <h2 data-testid="page-title">Explore Ingredients</h2>
+              <BiFoodMenu className="icons-header" size="48px" />
+            </header>
+            <ExploreFoodsIngredients />
+          </div>
         )
         : (
-          <ExploreDinksIngredients />
+          <div>
+            <header className="header-container">
+              <Link to="/profile">
+                <button type="button" className="icons-header">
+                  <img
+                    src={ profileIcon }
+                    alt="logo-profile"
+                    data-testid="profile-top-btn"
+                  />
+                </button>
+              </Link>
+              <h2 data-testid="page-title">Explore Ingredients</h2>
+              <BiFoodMenu className="icons-header" size="48px" />
+            </header>
+            <ExploreDinksIngredients />
+          </div>
         )}
       <Footer />
     </div>

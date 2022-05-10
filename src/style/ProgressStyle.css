@@ -1,4 +1,4 @@
-.footer {
+.footer-progress {
   background-color: var(--accenty-color);
   border: 1px solid #d4d3e8;
   border-radius: 26px;
@@ -17,6 +17,6 @@
   width: 30%;
 }
 
-.footer:hover {
+.footer-progress:hover {
   transform: scale(1.1);
 }

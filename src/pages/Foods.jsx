@@ -7,6 +7,8 @@ import SearchBar from '../components/SearchBar';
 import myContext from '../context/RecipeContext';
 import FoodsCategories from '../components/FoodsCategories';
 import ListFoods from '../components/ListFoods';
+import '../style/HeaderStyle.css';
+import '../style/List.css';
 
 function Foods() {
   const [state, setState] = useState(false);
@@ -17,15 +19,15 @@ function Foods() {
   }
 
   return (
-    <div>
-      <header>
+    <div className="recipes-container">
+      <header className="header-container">
         <Link to="/profile">
-          <button type="button">
+          <button type="button" className="icons-header">
             <img src={ profileIcon } alt="logo-profile" data-testid="profile-top-btn" />
           </button>
         </Link>
         <h2 data-testid="page-title">Foods</h2>
-        <button type="button" onClick={ () => setState(!state) }>
+        <button type="button" onClick={ () => setState(!state) } className="icons-header">
           <img src={ searchIcon } alt="logo-search" data-testid="search-top-btn" />
         </button>
       </header>
@@ -36,26 +38,35 @@ function Foods() {
 
       { foodsData.length > 0
         ? (
-          <div>
+          <div className="list-container">
             {foodsData.map((recipe, index) => (
               <div
                 key={ recipe.idMeal }
                 data-testid={ `${index}-recipe-card` }
               >
                 <Link to={ `/foods/${recipe.idMeal}` }>
-                  <img
-                    src={ recipe.strMealThumb }
-                    alt="strMealThumb"
-                    data-testid={ `${index}-card-img` }
-                  />
-                  <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
+                  <div className="card-container">
+                    <img
+                      src={ recipe.strMealThumb }
+                      alt="strMealThumb"
+                      data-testid={ `${index}-card-img` }
+                      className="list-picture"
+                    />
+                    <h2
+                      data-testid={ `${index}-card-name` }
+                      className="list-name-filter"
+                    >
+                      {recipe.strMeal}
+                    </h2>
+                  </div>
                 </Link>
               </div>
             ))}
           </div>) : ('')}
       <ListFoods />
-
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

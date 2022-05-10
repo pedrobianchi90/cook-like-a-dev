@@ -1,0 +1,37 @@
+.recipes-container {
+  background-color: var(--main-color);
+  width: 100%;
+}
+
+.header-container {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-header {
+  margin-top: 20px;
+}
+
+
+.icons-header {
+  align-self: center;
+  background-color: var(--accenty-color);
+  border: 1px solid #d4d3e8;
+  border-radius: 26px;
+  box-shadow: 0 2px 2px var(--bege);
+  color: var(--secondary-olor);
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 20px;
+  padding: 5px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.icons-header:hover {
+  border-color: var(--bege);
+  outline: none;
+}
