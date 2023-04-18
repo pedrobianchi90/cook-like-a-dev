@@ -17,11 +17,11 @@ The project was made in collaboration with Anna Beatriz Trajano de Sá, Lucas Me
 ## Starting The Project
 
 1. Clone the repository:
-  * `git@github.com:pedrobianchi90/cook-like-a-dev.git`
+  * ```git@github.com:pedrobianchi90/cook-like-a-dev.git```
 2. Navigate to the cloned repository folder:
-  * `cd cook-like-a-dev`
+  * ```cd cook-like-a-dev```
 3. Install the dependencies:
-  * `npm install`
+  * ```npm install```
 4. Start the project:
-  * `npm start`
+  * ```npm start```
 
