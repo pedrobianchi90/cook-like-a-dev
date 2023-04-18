@@ -1,15 +1,16 @@
 /* stylelint-disable property-no-vendor-prefix */
 
+
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap') ;
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap') ;
 
 .login-background {
   background-image: url('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=pexels-ella-olsson-1640777.jpg&fm=jpg');
-  background-position: 50%;
+  background-position: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
+  height: auto;
   margin: 0;
 }
 
