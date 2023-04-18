@@ -1,7 +1,8 @@
 # Cook Like a Dev
 
-## Contexto
 
-Este é um projeto de frontend de uma aplicação web que exibe uma coleção de receitas de bebidas e comidas. O projeto tem como funcionalidades exibir uma lista de receitas de bebidas e comidas, permitir que o usuário filtre as receitas por categoria (bebidas ou comidas), permite que o usuário pesquise por uma receita específica, exiba os detalhes de uma receita selecionada, incluindo a lista de ingredientes, o passo a passo de preparação entre outras funções. 
+## Context
 
-Este projeto foi feito em colaboração com Anna Beatriz Trajano de Sá, Lucas Mesquita, Mariah Manetti e Rafael Friedel.
+This is a frontend project for a web application that displays a collection of recipes for drinks and foods. The project features include displaying a list of drink and food recipes, allowing the user to filter recipes by category (drinks or foods), enabling the user to search for a specific recipe, displaying the details of a selected recipe, including the list of ingredients, step-by-step preparation, and other functions.
+
+The project was made in collaboration with Anna Beatriz Trajano de Sá, Lucas Mesquita, Mariah Manetti, and Rafael Friedel.
